@@ -1,0 +1,16 @@
+{
+  "system_name": "DMND",
+  "outcome": "Analyze 500+ public GitHub repos built with Claude, Codex, and Gemini in June 2026, classify each by business function and industry, identify the top 10 demand clusters where AI is most actively being applied, deploy a live demand intelligence dashboard on GitHub Pages updating every 6 hours, and deliver one share-worthy LinkedIn post summarizing the findings.",
+  "binary_criterion": "All 500+ repos classified by business function and industry, top 10 demand clusters identified and ranked, live dashboard deployed at samcolibri.github.io/forge/dmnd updating every 6 hours, and 1 LinkedIn post drafted and approved for publish.",
+  "worker_types_needed": [
+    "EXTRACTOR",
+    "RESEARCHER",
+    "SYNTHESIZER",
+    "CLUSTER_ANALYST",
+    "REPORTER",
+    "DRAFTER",
+    "QA_SCORER"
+  ],
+  "estimated_iterations": 72,
+  "project_dir": "."
+}

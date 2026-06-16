@@ -1,0 +1,23 @@
+🔥 I let AI agents analyze 145 real GitHub repos to map where AI demand is HOTTEST right now (June 2026).
+
+Here's what 145 repos reveal:
+
+🥇 Product Development × SaaS & Developer Tools — 70 repos
+🥈 DevOps & Infrastructure × SaaS & Developer Tools — 16 repos
+🥉 Operations & Logistics × SaaS & Developer Tools — 15 repos
+4️⃣ Data & Analytics × SaaS & Developer Tools — 11 repos
+5️⃣ IT & Security × SaaS & Developer Tools — 4 repos
+
+🤯 The surprise: Highest unexpected concentration: 2 repos targeting 'Data & Analytics' in 'Financial Services' -- real-world AI adoption is happening outside pure developer tooling.
+
+💡 Key takeaway: 88% of AI builders are still building for developers and SaaS — the massive opportunity is in vertical industries. Financial Services, Healthcare, Education... the enterprise wave hasn't hit GitHub yet. It's coming.
+
+The dashboard updates every 6 hours automatically. 100% open source. Built with FORGE — an autonomous agent OS where you define the outcome and agents run the loop.
+
+What business function is YOUR company trying to solve with AI in 2026?
+
+👉 Live demand map (updates 24/7): https://samcolibri.github.io/ai-demand-pulse/
+📊 Vote in the poll: https://github.com/samcolibri/ai-demand-pulse/discussions
+⭐ Star the repo if this is useful: https://github.com/samcolibri/ai-demand-pulse
+
+#AI #BuildInPublic #AgentAI #OpenSource #FORGE #AITools #LLM #GitHub #Founders #AIStrategy

@@ -1,0 +1,418 @@
+{
+  "demand_matrix": {
+    "Product Development": {
+      "SaaS & Developer Tools": 70,
+      "Consulting & Agency": 1
+    },
+    "IT & Security": {
+      "SaaS & Developer Tools": 4
+    },
+    "Education & Training": {
+      "SaaS & Developer Tools": 3,
+      "Education": 1
+    },
+    "Sales & Outreach": {
+      "SaaS & Developer Tools": 2,
+      "Retail & E-commerce": 2,
+      "Other": 1,
+      "Consulting & Agency": 1
+    },
+    "Research & Science": {
+      "SaaS & Developer Tools": 2,
+      "Education": 1
+    },
+    "DevOps & Infrastructure": {
+      "SaaS & Developer Tools": 16
+    },
+    "Content & Marketing": {
+      "SaaS & Developer Tools": 4,
+      "Media & Entertainment": 1,
+      "Consulting & Agency": 1,
+      "Other": 1
+    },
+    "Operations & Logistics": {
+      "SaaS & Developer Tools": 15,
+      "Other": 1
+    },
+    "Finance & Accounting": {
+      "Financial Services": 1
+    },
+    "Data & Analytics": {
+      "Financial Services": 2,
+      "SaaS & Developer Tools": 11
+    },
+    "Other": {
+      "Other": 2
+    },
+    "Customer Support": {
+      "Financial Services": 1
+    },
+    "Legal & Compliance": {
+      "Financial Services": 1
+    }
+  },
+  "top_clusters": [
+    {
+      "business_function": "Product Development",
+      "industry": "SaaS & Developer Tools",
+      "count": 70,
+      "repos": [
+        {
+          "name": "NousResearch/hermes-agent",
+          "url": "https://github.com/NousResearch/hermes-agent"
+        },
+        {
+          "name": "HKUDS/nanobot",
+          "url": "https://github.com/HKUDS/nanobot"
+        },
+        {
+          "name": "wshobson/agents",
+          "url": "https://github.com/wshobson/agents"
+        },
+        {
+          "name": "aden-hive/hive",
+          "url": "https://github.com/aden-hive/hive"
+        },
+        {
+          "name": "griptape-ai/griptape",
+          "url": "https://github.com/griptape-ai/griptape"
+        }
+      ]
+    },
+    {
+      "business_function": "DevOps & Infrastructure",
+      "industry": "SaaS & Developer Tools",
+      "count": 16,
+      "repos": [
+        {
+          "name": "sipyourdrink-ltd/bernstein",
+          "url": "https://github.com/sipyourdrink-ltd/bernstein"
+        },
+        {
+          "name": "mensfeld/code-on-incus",
+          "url": "https://github.com/mensfeld/code-on-incus"
+        },
+        {
+          "name": "runtm-ai/runtm",
+          "url": "https://github.com/runtm-ai/runtm"
+        },
+        {
+          "name": "777genius/os-ai-computer-use",
+          "url": "https://github.com/777genius/os-ai-computer-use"
+        },
+        {
+          "name": "closedloop-ai/claude-plugins",
+          "url": "https://github.com/closedloop-ai/claude-plugins"
+        }
+      ]
+    },
+    {
+      "business_function": "Operations & Logistics",
+      "industry": "SaaS & Developer Tools",
+      "count": 15,
+      "repos": [
+        {
+          "name": "dicnunz/codex-mission-control",
+          "url": "https://github.com/dicnunz/codex-mission-control"
+        },
+        {
+          "name": "SolomonK9/OpenClaw-Codex-OAuth-Routing-Kit",
+          "url": "https://github.com/SolomonK9/OpenClaw-Codex-OAuth-Routing-Kit"
+        },
+        {
+          "name": "GitLaughs/openclaw",
+          "url": "https://github.com/GitLaughs/openclaw"
+        },
+        {
+          "name": "Skyvern-AI/skyvern",
+          "url": "https://github.com/Skyvern-AI/skyvern"
+        },
+        {
+          "name": "skalesapp/skales",
+          "url": "https://github.com/skalesapp/skales"
+        }
+      ]
+    },
+    {
+      "business_function": "Data & Analytics",
+      "industry": "SaaS & Developer Tools",
+      "count": 11,
+      "repos": [
+        {
+          "name": "usetemi/skills",
+          "url": "https://github.com/usetemi/skills"
+        },
+        {
+          "name": "Varn1t/EDAgent",
+          "url": "https://github.com/Varn1t/EDAgent"
+        },
+        {
+          "name": "Canner/WrenAI",
+          "url": "https://github.com/Canner/WrenAI"
+        },
+        {
+          "name": "open-metadata/OpenMetadata",
+          "url": "https://github.com/open-metadata/OpenMetadata"
+        },
+        {
+          "name": "MaterializeInc/materialize",
+          "url": "https://github.com/MaterializeInc/materialize"
+        }
+      ]
+    },
+    {
+      "business_function": "IT & Security",
+      "industry": "SaaS & Developer Tools",
+      "count": 4,
+      "repos": [
+        {
+          "name": "mukul975/Anthropic-Cybersecurity-Skills",
+          "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills"
+        },
+        {
+          "name": "OpenOSINT/OpenOSINT",
+          "url": "https://github.com/OpenOSINT/OpenOSINT"
+        },
+        {
+          "name": "adminlove520/AI-Account-Toolkit",
+          "url": "https://github.com/adminlove520/AI-Account-Toolkit"
+        },
+        {
+          "name": "ARCANGEL0/EVA",
+          "url": "https://github.com/ARCANGEL0/EVA"
+        }
+      ]
+    },
+    {
+      "business_function": "Content & Marketing",
+      "industry": "SaaS & Developer Tools",
+      "count": 4,
+      "repos": [
+        {
+          "name": "Akxan/ppt-agent-skill",
+          "url": "https://github.com/Akxan/ppt-agent-skill"
+        },
+        {
+          "name": "GitLaughs/codex-feishu",
+          "url": "https://github.com/GitLaughs/codex-feishu"
+        },
+        {
+          "name": "zhiro-labs/daia",
+          "url": "https://github.com/zhiro-labs/daia"
+        },
+        {
+          "name": "patriarchal-boothose896/notebooklm-py",
+          "url": "https://github.com/patriarchal-boothose896/notebooklm-py"
+        }
+      ]
+    },
+    {
+      "business_function": "Education & Training",
+      "industry": "SaaS & Developer Tools",
+      "count": 3,
+      "repos": [
+        {
+          "name": "FlorianBruniaux/claude-code-ultimate-guide",
+          "url": "https://github.com/FlorianBruniaux/claude-code-ultimate-guide"
+        },
+        {
+          "name": "keyuchen21/agentic-engineering-handbook",
+          "url": "https://github.com/keyuchen21/agentic-engineering-handbook"
+        },
+        {
+          "name": "mauripsale/doc-adk-training",
+          "url": "https://github.com/mauripsale/doc-adk-training"
+        }
+      ]
+    },
+    {
+      "business_function": "Sales & Outreach",
+      "industry": "SaaS & Developer Tools",
+      "count": 2,
+      "repos": [
+        {
+          "name": "stickerdaniel/linkedin-mcp-server",
+          "url": "https://github.com/stickerdaniel/linkedin-mcp-server"
+        },
+        {
+          "name": "ashmisharma93/AI_Powered_Keyword_Research_Agent",
+          "url": "https://github.com/ashmisharma93/AI_Powered_Keyword_Research_Agent"
+        }
+      ]
+    },
+    {
+      "business_function": "Research & Science",
+      "industry": "SaaS & Developer Tools",
+      "count": 2,
+      "repos": [
+        {
+          "name": "Ar9av/PaperOrchestra",
+          "url": "https://github.com/Ar9av/PaperOrchestra"
+        },
+        {
+          "name": "wanshuiyin/Auto-claude-code-research-in-sleep",
+          "url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+        }
+      ]
+    },
+    {
+      "business_function": "Data & Analytics",
+      "industry": "Financial Services",
+      "count": 2,
+      "repos": [
+        {
+          "name": "guy-hartstein/company-research-agent",
+          "url": "https://github.com/guy-hartstein/company-research-agent"
+        },
+        {
+          "name": "microsoft/finnts",
+          "url": "https://github.com/microsoft/finnts"
+        }
+      ]
+    },
+    {
+      "business_function": "Other",
+      "industry": "Other",
+      "count": 2,
+      "repos": [
+        {
+          "name": "Kaustubh1504/google-i-o-hackthon-leaderboard",
+          "url": "https://github.com/Kaustubh1504/google-i-o-hackthon-leaderboard"
+        },
+        {
+          "name": "uptonking/note4yaoo",
+          "url": "https://github.com/uptonking/note4yaoo"
+        }
+      ]
+    },
+    {
+      "business_function": "Sales & Outreach",
+      "industry": "Retail & E-commerce",
+      "count": 2,
+      "repos": [
+        {
+          "name": "agentic-commerce-protocol/agentic-commerce-protocol",
+          "url": "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol"
+        },
+        {
+          "name": "nexscope-ai/eCommerce-Skills",
+          "url": "https://github.com/nexscope-ai/eCommerce-Skills"
+        }
+      ]
+    },
+    {
+      "business_function": "Finance & Accounting",
+      "industry": "Financial Services",
+      "count": 1,
+      "repos": [
+        {
+          "name": "mncrftfrcnm/mexc-agent-trading-skills",
+          "url": "https://github.com/mncrftfrcnm/mexc-agent-trading-skills"
+        }
+      ]
+    },
+    {
+      "business_function": "Research & Science",
+      "industry": "Education",
+      "count": 1,
+      "repos": [
+        {
+          "name": "zhouzhq2021/PaperBanana-AIMSLab",
+          "url": "https://github.com/zhouzhq2021/PaperBanana-AIMSLab"
+        }
+      ]
+    },
+    {
+      "business_function": "Education & Training",
+      "industry": "Education",
+      "count": 1,
+      "repos": [
+        {
+          "name": "tornikebolokadze1-cyber/training-agent",
+          "url": "https://github.com/tornikebolokadze1-cyber/training-agent"
+        }
+      ]
+    }
+  ],
+  "by_ai_tool": {
+    "claude": 33,
+    "other": 72,
+    "codex": 19,
+    "gemini": 21
+  },
+  "trending_functions": [
+    {
+      "business_function": "Product Development",
+      "count": 71
+    },
+    {
+      "business_function": "DevOps & Infrastructure",
+      "count": 16
+    },
+    {
+      "business_function": "Operations & Logistics",
+      "count": 16
+    },
+    {
+      "business_function": "Data & Analytics",
+      "count": 13
+    },
+    {
+      "business_function": "Content & Marketing",
+      "count": 7
+    },
+    {
+      "business_function": "Sales & Outreach",
+      "count": 6
+    },
+    {
+      "business_function": "IT & Security",
+      "count": 4
+    },
+    {
+      "business_function": "Education & Training",
+      "count": 4
+    },
+    {
+      "business_function": "Research & Science",
+      "count": 3
+    },
+    {
+      "business_function": "Other",
+      "count": 2
+    }
+  ],
+  "trending_industries": [
+    {
+      "industry": "SaaS & Developer Tools",
+      "count": 127
+    },
+    {
+      "industry": "Financial Services",
+      "count": 5
+    },
+    {
+      "industry": "Other",
+      "count": 5
+    },
+    {
+      "industry": "Consulting & Agency",
+      "count": 3
+    },
+    {
+      "industry": "Education",
+      "count": 2
+    },
+    {
+      "industry": "Retail & E-commerce",
+      "count": 2
+    },
+    {
+      "industry": "Media & Entertainment",
+      "count": 1
+    }
+  ],
+  "total_repos_analyzed": 145,
+  "analysis_date": "2026-06-16",
+  "hot_insight": "Highest unexpected concentration: 2 repos targeting 'Data & Analytics' in 'Financial Services' -- real-world AI adoption is happening outside pure developer tooling."
+}

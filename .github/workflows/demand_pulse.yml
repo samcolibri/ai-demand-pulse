@@ -1,0 +1,68 @@
+name: AI Demand Pulse — 6h Analysis
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # every 6 hours
+  workflow_dispatch:        # manual trigger
+  push:
+    branches: [main]
+    paths: ['workers/**']
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install anthropic httpx requests
+
+      - name: Run SCOUT (repo discovery)
+        run: python3 workers/scout.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run ANALYZER (Claude classification)
+        run: python3 workers/analyzer.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run AGGREGATOR (build dashboard data)
+        run: python3 workers/aggregator.py
+
+      - name: Generate LinkedIn post
+        run: python3 workers/linkedin_post.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "FORGE Agent"
+          git config user.email "forge@samcolibri.github.io"
+          git add data/
+          git diff --staged --quiet || git commit -m "chore: demand pulse update $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          keep_files: true
