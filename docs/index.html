@@ -1,913 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Demand Pulse — Live Intelligence Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0a0e1a;
-      --bg2: #0f1528;
-      --bg3: #141930;
-      --card: #161d35;
-      --card2: #1a2240;
-      --border: #1e2d50;
-      --border2: #263560;
-      --hot: #ef4444;
-      --hot2: #dc2626;
-      --hot-glow: rgba(239,68,68,0.25);
-      --amber: #f59e0b;
-      --amber-glow: rgba(245,158,11,0.2);
-      --blue: #3b82f6;
-      --blue-glow: rgba(59,130,246,0.2);
-      --muted: #64748b;
-      --text: #e2e8f0;
-      --text2: #94a3b8;
-      --text3: #64748b;
-      --cell-0: transparent;
-      --cell-low: #1e3a5f;
-      --cell-med: #92400e;
-      --cell-high: #7f1d1d;
-      --cell-max: #450a0a;
-      --green: #22c55e;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Demand Pulse — June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050810;
+    --surface: #0d1117;
+    --border: #21262d;
+    --hot: #ef4444;
+    --warm: #f59e0b;
+    --cool: #3b82f6;
+    --green: #10b981;
+    --text: #e6edf3;
+    --muted: #7d8590;
+    --font: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.6; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* NAV */
+  nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+  .nav-brand { font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .pulse-dot { width: 8px; height: 8px; background: var(--hot); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+  .nav-right { display: flex; align-items: center; gap: 16px; font-size: .8rem; color: var(--muted); }
+  .nav-right a { color: var(--cool); text-decoration: none; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 14px;
-      line-height: 1.6;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+  /* HERO */
+  .hero { padding: 80px 32px 60px; text-align: center; max-width: 900px; margin: 0 auto; }
+  .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+  .gradient-text { background: linear-gradient(135deg, #ef4444, #f59e0b, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px; }
+  .stats-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 20px; text-align: center; }
+  .stat-n { font-size: 1.6rem; font-weight: 800; color: var(--text); }
+  .stat-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
-    /* ── AMBIENT GLOW LAYERS ── */
-    body::before {
-      content: '';
-      position: fixed; top: -200px; left: 50%;
-      transform: translateX(-50%);
-      width: 800px; height: 400px;
-      background: radial-gradient(ellipse, rgba(239,68,68,0.07) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-    }
+  /* SECTIONS */
+  .section { max-width: 1200px; margin: 0 auto; padding: 0 32px 60px; }
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .section-title { font-size: 1rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
+  .section-sub { font-size: .8rem; color: var(--muted); }
 
-    /* ── LAYOUT ── */
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  /* HEATMAP */
+  .heatmap-wrap { overflow-x: auto; margin-bottom: 8px; }
+  .heatmap-table { width: 100%; border-collapse: collapse; font-size: .75rem; }
+  .heatmap-table th { padding: 8px 10px; color: var(--muted); font-weight: 600; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--border); }
+  .heatmap-table th:first-child { min-width: 180px; }
+  .heatmap-table td { padding: 6px 10px; text-align: center; border: 1px solid #0d1117; transition: transform .1s; cursor: default; border-radius: 3px; }
+  .heatmap-table td:first-child { text-align: left; color: var(--muted); font-size: .72rem; padding-left: 0; border: none; background: none; }
+  .heatmap-table td:hover { transform: scale(1.05); z-index: 10; position: relative; }
+  .cell-0  { background: transparent; color: transparent; }
+  .cell-1  { background: #1e2d4a; color: #93c5fd; }
+  .cell-2  { background: #1e3a2e; color: #6ee7b7; }
+  .cell-3  { background: #3d2e0a; color: #fcd34d; }
+  .cell-4  { background: #4a1a0a; color: #fca5a5; }
+  .cell-5  { background: #5a0a0a; color: #fca5a5; font-weight: 700; }
+  .heat-legend { display: flex; align-items: center; gap: 6px; font-size: .72rem; color: var(--muted); margin-top: 12px; }
+  .heat-swatch { width: 16px; height: 16px; border-radius: 3px; }
 
-    /* ── NAV ── */
-    nav {
-      border-bottom: 1px solid var(--border);
-      background: rgba(10,14,26,0.85);
-      backdrop-filter: blur(12px);
-      position: sticky; top: 0; z-index: 100;
-    }
-    .nav-inner {
-      max-width: 1280px; margin: 0 auto; padding: 0 24px;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 56px;
-    }
-    .nav-brand {
-      font-size: 15px; font-weight: 700; letter-spacing: -0.3px;
-      background: linear-gradient(90deg, var(--hot), var(--amber), var(--blue));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .nav-pill {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
-      background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
-      color: var(--hot); padding: 4px 10px; border-radius: 99px;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .nav-pill .pulse {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--hot);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
+  /* TOP CLUSTERS */
+  .clusters { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .cluster-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .cluster-rank { font-size: .65rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .cluster-label { font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+  .cluster-industry { font-size: .78rem; color: var(--muted); margin-bottom: 12px; }
+  .cluster-bar { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 12px; overflow: hidden; }
+  .cluster-fill { height: 100%; background: linear-gradient(90deg, var(--hot), var(--warm)); border-radius: 2px; }
+  .cluster-repos { list-style: none; }
+  .cluster-repos li { font-size: .75rem; padding: 3px 0; border-top: 1px solid var(--border); }
+  .cluster-repos li a { color: var(--cool); text-decoration: none; font-family: var(--mono); }
+  .cluster-repos li a:hover { text-decoration: underline; }
+  .cluster-count { font-size: 1.4rem; font-weight: 800; color: var(--hot); }
 
-    /* ── HERO ── */
-    .hero {
-      padding: 80px 0 60px;
-      text-align: center;
-    }
-    .hero-eyebrow {
-      font-size: 11px; font-weight: 600; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--amber);
-      margin-bottom: 20px; display: flex; align-items: center;
-      justify-content: center; gap: 8px;
-    }
-    .hero-eyebrow::before, .hero-eyebrow::after {
-      content: ''; flex: 1; max-width: 60px;
-      height: 1px; background: var(--border2);
-    }
-    h1 {
-      font-size: clamp(48px, 8vw, 96px);
-      font-weight: 900;
-      letter-spacing: -3px;
-      line-height: 1;
-      background: linear-gradient(135deg, var(--hot) 0%, var(--amber) 40%, var(--blue) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 24px;
-    }
-    .hero-sub {
-      font-size: clamp(15px, 2vw, 18px);
-      color: var(--text2);
-      max-width: 620px; margin: 0 auto 40px;
-      font-weight: 400; line-height: 1.7;
-    }
-    .hero-sub strong { color: var(--text); font-weight: 600; }
+  /* TOOL BARS */
+  .tool-bars { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .tool-name { font-size: .8rem; font-weight: 700; margin-bottom: 8px; }
+  .tool-bar-wrap { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .tool-bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+  .tool-count { font-size: 1.6rem; font-weight: 800; margin-top: 8px; }
+  .tool-pct { font-size: .75rem; color: var(--muted); }
 
-    /* ── STATS ROW ── */
-    .stats-row {
-      display: flex; flex-wrap: wrap;
-      gap: 12px; justify-content: center; margin-bottom: 0;
-    }
-    .stat-chip {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 20px;
-      text-align: center;
-      min-width: 140px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .stat-chip:hover { border-color: var(--border2); transform: translateY(-2px); }
-    .stat-chip .val {
-      font-size: 28px; font-weight: 800;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, var(--hot), var(--amber));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .stat-chip .lbl {
-      font-size: 11px; color: var(--text3); font-weight: 500;
-      letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px;
-    }
+  /* HOT INSIGHT */
+  .insight-card { background: #160505; border: 1px solid #7f1d1d; border-radius: 12px; padding: 24px; margin-bottom: 32px; }
+  .insight-label { font-size: .72rem; font-weight: 700; color: var(--hot); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+  .insight-text { font-size: 1.05rem; font-weight: 600; line-height: 1.5; }
 
-    /* ── SECTION HEADERS ── */
-    .section { padding: 64px 0; }
-    .section-header {
-      display: flex; align-items: baseline; gap: 12px;
-      margin-bottom: 32px;
-    }
-    .section-title {
-      font-size: 22px; font-weight: 800; letter-spacing: -0.5px;
-    }
-    .section-badge {
-      font-size: 10px; font-weight: 700; letter-spacing: 1px;
-      text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
-    }
-    .badge-hot { background: rgba(239,68,68,0.15); color: var(--hot); border: 1px solid rgba(239,68,68,0.3); }
-    .badge-amber { background: rgba(245,158,11,0.15); color: var(--amber); border: 1px solid rgba(245,158,11,0.3); }
-    .badge-blue { background: rgba(59,130,246,0.15); color: var(--blue); border: 1px solid rgba(59,130,246,0.3); }
-    .badge-green { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
-    .section-desc { color: var(--text3); font-size: 13px; margin-left: auto; }
+  /* LIVE FEED */
+  .feed { list-style: none; }
+  .feed-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .feed-item:last-child { border: none; }
+  .feed-badges { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; margin-top: 2px; }
+  .badge { font-size: .65rem; padding: 2px 7px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .badge-blue { background: #1e3a5f; color: #93c5fd; }
+  .badge-green { background: #064e3b; color: #6ee7b7; }
+  .badge-amber { background: #78350f; color: #fcd34d; }
+  .feed-name a { font-size: .875rem; font-weight: 600; color: var(--text); text-decoration: none; font-family: var(--mono); }
+  .feed-name a:hover { color: var(--cool); }
+  .feed-desc { font-size: .78rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── DIVIDER ── */
-    .divider { height: 1px; background: var(--border); margin: 0 24px; }
+  /* POLL CTA */
+  .cta-card { background: linear-gradient(135deg, #0d1117, #160b24); border: 1px solid #30185c; border-radius: 16px; padding: 32px; text-align: center; margin-bottom: 32px; }
+  .cta-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+  .cta-sub { color: var(--muted); font-size: .9rem; margin-bottom: 20px; }
+  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; font-size: .875rem; font-weight: 600; text-decoration: none; transition: opacity .2s; }
+  .btn:hover { opacity: .85; }
+  .btn-primary { background: var(--cool); color: #fff; }
+  .btn-secondary { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+  .btn-linkedin { background: #0077b5; color: #fff; }
 
-    /* ── HEATMAP ── */
-    .heatmap-wrap {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 28px; overflow-x: auto;
-    }
-    .heatmap-table { width: 100%; border-collapse: separate; border-spacing: 4px; }
-    .heatmap-table th {
-      font-size: 10px; font-weight: 600; color: var(--text3);
-      letter-spacing: 0.3px; padding: 4px 6px; text-align: center;
-      white-space: nowrap;
-    }
-    .heatmap-table th.row-label { text-align: right; padding-right: 12px; }
-    .heatmap-cell {
-      width: 68px; height: 44px;
-      border-radius: 6px; cursor: pointer;
-      font-size: 12px; font-weight: 700;
-      color: rgba(255,255,255,0.85);
-      text-align: center; vertical-align: middle;
-      transition: transform 0.15s, box-shadow 0.15s;
-      position: relative;
-    }
-    .heatmap-cell:hover {
-      transform: scale(1.12);
-      box-shadow: 0 0 0 2px rgba(255,255,255,0.2), 0 4px 16px rgba(0,0,0,0.4);
-      z-index: 10;
-    }
-    .heat-0 { background: var(--bg3); color: var(--text3); }
-    .heat-low { background: var(--cell-low); }
-    .heat-med { background: var(--cell-med); }
-    .heat-high { background: var(--cell-high); }
-    .heat-max { background: var(--cell-max); box-shadow: 0 0 8px rgba(239,68,68,0.3); }
+  /* LOADING */
+  .loading { text-align: center; padding: 80px 32px; color: var(--muted); }
+  .loading-spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--cool); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
-    .heatmap-legend {
-      display: flex; align-items: center; gap: 8px;
-      margin-top: 20px; font-size: 11px; color: var(--text3);
-    }
-    .legend-item { display: flex; align-items: center; gap: 4px; }
-    .legend-box { width: 14px; height: 14px; border-radius: 3px; }
-
-    /* ── TOOLTIP ── */
-    .tooltip {
-      position: fixed; pointer-events: none;
-      background: var(--bg2); border: 1px solid var(--border2);
-      border-radius: 8px; padding: 10px 14px;
-      font-size: 12px; z-index: 9999;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-      max-width: 220px; display: none;
-    }
-    .tooltip .tt-title { font-weight: 700; color: var(--text); margin-bottom: 4px; }
-    .tooltip .tt-count { color: var(--amber); font-weight: 700; font-size: 14px; }
-    .tooltip .tt-repo { color: var(--text3); font-size: 11px; margin-top: 4px; }
-
-    /* ── CLUSTER CARDS ── */
-    .clusters-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 16px;
-    }
-    .cluster-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 20px;
-      transition: border-color 0.2s, transform 0.2s;
-      cursor: default;
-    }
-    .cluster-card:hover {
-      border-color: var(--border2);
-      transform: translateY(-2px);
-    }
-    .cluster-card.top3 { border-color: rgba(239,68,68,0.35); }
-    .cluster-card.top3:hover { border-color: rgba(239,68,68,0.6); }
-    .cluster-header {
-      display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px;
-    }
-    .rank-badge {
-      font-size: 18px; min-width: 36px; text-align: center;
-      padding-top: 2px;
-    }
-    .cluster-meta { flex: 1; }
-    .cluster-func {
-      font-size: 15px; font-weight: 700;
-      color: var(--text); letter-spacing: -0.3px;
-    }
-    .cluster-industry {
-      font-size: 12px; color: var(--text3); margin-top: 2px;
-    }
-    .cluster-count {
-      font-size: 22px; font-weight: 900;
-      color: var(--hot); letter-spacing: -1px;
-    }
-    .cluster-count span { font-size: 11px; color: var(--text3); font-weight: 500; letter-spacing: 0; }
-    .bar-wrap { height: 6px; background: var(--bg3); border-radius: 3px; margin-bottom: 14px; }
-    .bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
-    .bar-hot { background: linear-gradient(90deg, var(--hot2), var(--hot)); }
-    .bar-amber { background: linear-gradient(90deg, #b45309, var(--amber)); }
-    .bar-blue { background: linear-gradient(90deg, #1d4ed8, var(--blue)); }
-    .repo-links { display: flex; flex-direction: column; gap: 4px; }
-    .repo-link {
-      font-size: 11px; color: var(--blue); text-decoration: none;
-      display: flex; align-items: center; gap: 5px;
-      transition: color 0.15s;
-    }
-    .repo-link:hover { color: #93c5fd; }
-    .repo-link::before {
-      content: '↗'; font-size: 10px; opacity: 0.7;
-    }
-
-    /* ── AI TOOL CHART ── */
-    .tool-chart-wrap {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 28px;
-    }
-    .tool-bars { display: flex; flex-direction: column; gap: 18px; }
-    .tool-row { display: flex; align-items: center; gap: 14px; }
-    .tool-name {
-      font-size: 13px; font-weight: 600;
-      width: 80px; flex-shrink: 0;
-    }
-    .tool-bar-track {
-      flex: 1; height: 28px; background: var(--bg3);
-      border-radius: 6px; overflow: hidden; position: relative;
-    }
-    .tool-bar-fill {
-      height: 100%; border-radius: 6px;
-      display: flex; align-items: center; padding-left: 10px;
-      font-size: 12px; font-weight: 700; color: white;
-      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .fill-claude { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
-    .fill-codex  { background: linear-gradient(90deg, #0d9488, #34d399); }
-    .fill-gemini { background: linear-gradient(90deg, #1d4ed8, #60a5fa); }
-    .fill-other  { background: linear-gradient(90deg, #374151, #6b7280); }
-    .tool-pct { font-size: 14px; font-weight: 700; width: 42px; text-align: right; flex-shrink: 0; }
-
-    /* ── HOT INSIGHT ── */
-    .insight-card {
-      background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(245,158,11,0.05));
-      border: 1px solid rgba(239,68,68,0.3);
-      border-radius: 16px; padding: 32px;
-      position: relative; overflow: hidden;
-    }
-    .insight-card::before {
-      content: '';
-      position: absolute; top: -40px; right: -40px;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(239,68,68,0.1), transparent 70%);
-    }
-    .insight-icon { font-size: 32px; margin-bottom: 12px; }
-    .insight-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--hot); margin-bottom: 12px;
-    }
-    .insight-text {
-      font-size: 20px; font-weight: 700;
-      color: var(--text); line-height: 1.4;
-      max-width: 800px;
-    }
-
-    /* ── POLL CTA ── */
-    .poll-card {
-      background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.04));
-      border: 1px solid rgba(59,130,246,0.25);
-      border-radius: 16px; padding: 32px;
-      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
-    }
-    .poll-text h3 {
-      font-size: 20px; font-weight: 800;
-      letter-spacing: -0.3px; margin-bottom: 8px;
-    }
-    .poll-text p { color: var(--text2); font-size: 14px; max-width: 480px; }
-    .poll-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-left: auto; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 22px; border-radius: 10px;
-      font-size: 14px; font-weight: 600;
-      text-decoration: none; cursor: pointer;
-      transition: all 0.2s; border: none;
-    }
-    .btn-primary {
-      background: var(--blue);
-      color: white;
-      box-shadow: 0 4px 14px rgba(59,130,246,0.35);
-    }
-    .btn-primary:hover {
-      background: #2563eb;
-      box-shadow: 0 6px 20px rgba(59,130,246,0.5);
-      transform: translateY(-1px);
-    }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border2);
-      color: var(--text2);
-    }
-    .btn-outline:hover {
-      border-color: var(--text2); color: var(--text);
-      transform: translateY(-1px);
-    }
-    .btn-linkedin {
-      background: #0a66c2;
-      color: white;
-      box-shadow: 0 4px 14px rgba(10,102,194,0.35);
-    }
-    .btn-linkedin:hover {
-      background: #0958a8;
-      box-shadow: 0 6px 20px rgba(10,102,194,0.5);
-      transform: translateY(-1px);
-    }
-
-    /* ── LIVE FEED ── */
-    .feed-list { display: flex; flex-direction: column; gap: 10px; }
-    .feed-item {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 16px 18px;
-      display: flex; align-items: flex-start; gap: 14px;
-      transition: border-color 0.2s;
-    }
-    .feed-item:hover { border-color: var(--border2); }
-    .feed-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--green); flex-shrink: 0;
-      margin-top: 6px;
-      box-shadow: 0 0 6px rgba(34,197,94,0.5);
-    }
-    .feed-content { flex: 1; min-width: 0; }
-    .feed-name {
-      font-size: 13px; font-weight: 700;
-      color: var(--text); margin-bottom: 3px;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .feed-summary {
-      font-size: 12px; color: var(--text3);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .feed-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-    .feed-badge {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.3px;
-      padding: 2px 8px; border-radius: 4px;
-    }
-
-    /* ── LOADING ── */
-    .loading {
-      display: flex; align-items: center; justify-content: center;
-      gap: 10px; padding: 60px; color: var(--text3);
-      font-size: 14px;
-    }
-    .spinner {
-      width: 20px; height: 20px; border-radius: 50%;
-      border: 2px solid var(--border); border-top-color: var(--amber);
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
-      text-align: center;
-      color: var(--text3);
-      font-size: 13px;
-    }
-    footer a { color: var(--blue); text-decoration: none; }
-    footer a:hover { color: #93c5fd; }
-    .footer-row { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
-
-    /* ── GRID LAYOUT HELPERS ── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
-
-    /* ── ERROR STATE ── */
-    .error-box {
-      background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2);
-      border-radius: 10px; padding: 20px; color: var(--hot);
-      font-size: 13px; text-align: center;
-    }
-  </style>
+  footer { border-top: 1px solid var(--border); padding: 24px 32px; text-align: center; color: var(--muted); font-size: .8rem; }
+  footer a { color: var(--cool); text-decoration: none; }
+</style>
 </head>
 <body>
 
-<!-- ── TOOLTIP ── -->
-<div class="tooltip" id="tooltip">
-  <div class="tt-title" id="tt-title"></div>
-  <div class="tt-count" id="tt-count"></div>
-  <div class="tt-repo" id="tt-repo"></div>
-</div>
-
-<!-- ── NAV ── -->
 <nav>
-  <div class="nav-inner">
-    <div class="nav-brand">AI Demand Pulse</div>
-    <div class="nav-pill">
-      <div class="pulse"></div>
-      LIVE — Updates every 6h
-    </div>
+  <div class="nav-brand">
+    <span class="pulse-dot"></span>
+    AI Demand Pulse
+  </div>
+  <div class="nav-right">
+    <span id="nav-repos">loading...</span>
+    <span id="nav-updated">loading...</span>
+    <a href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">GitHub ↗</a>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
-<div class="container">
-  <section class="hero">
-    <div class="hero-eyebrow">FORGE Agents · June 2026 · Live Intelligence</div>
-    <h1>AI Demand Pulse</h1>
-    <p class="hero-sub">
-      Which industries are <strong>hungry for AI solutions</strong> in June 2026?
-      Analyzed by FORGE agents across <strong>500+ GitHub repos</strong> built with Claude, Codex, and Gemini.
-    </p>
-    <div class="stats-row" id="stats-row">
-      <div class="stat-chip loading"><div class="spinner"></div></div>
-    </div>
-  </section>
-</div>
-
-<div class="divider"></div>
-
-<!-- ── HEATMAP ── -->
-<div class="container">
-  <section class="section">
-    <div class="section-header">
-      <div class="section-title">Demand Heatmap</div>
-      <span class="section-badge badge-hot">LIVE DATA</span>
-      <div class="section-desc">Business Function × Industry</div>
-    </div>
-    <div class="heatmap-wrap" id="heatmap-container">
-      <div class="loading"><div class="spinner"></div> Building heatmap…</div>
-    </div>
-  </section>
-</div>
-
-<div class="divider"></div>
-
-<!-- ── TOP 10 CLUSTERS ── -->
-<div class="container">
-  <section class="section">
-    <div class="section-header">
-      <div class="section-title">Top 10 Demand Clusters</div>
-      <span class="section-badge badge-amber">RANKED</span>
-    </div>
-    <div class="clusters-grid" id="clusters-grid">
-      <div class="loading"><div class="spinner"></div> Loading clusters…</div>
-    </div>
-  </section>
-</div>
-
-<div class="divider"></div>
-
-<!-- ── AI TOOLS + HOT INSIGHT ── -->
-<div class="container">
-  <section class="section">
-    <div class="two-col">
-      <div>
-        <div class="section-header">
-          <div class="section-title">By AI Tool</div>
-          <span class="section-badge badge-blue">BREAKDOWN</span>
-        </div>
-        <div class="tool-chart-wrap" id="tool-chart">
-          <div class="loading"><div class="spinner"></div></div>
-        </div>
-      </div>
-      <div>
-        <div class="section-header">
-          <div class="section-title">Hot Insight</div>
-          <span class="section-badge badge-hot">🤯 SURPRISING</span>
-        </div>
-        <div id="insight-container">
-          <div class="loading"><div class="spinner"></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div class="divider"></div>
-
-<!-- ── POLL CTA ── -->
-<div class="container">
-  <section class="section">
-    <div class="section-header">
-      <div class="section-title">Shape What We Build Next</div>
-      <span class="section-badge badge-blue">COMMUNITY</span>
-    </div>
-    <div class="poll-card">
-      <div class="poll-text">
-        <h3>What business function should AI solve next?</h3>
-        <p>Vote in the live poll → your vote influences what FORGE agents build and analyze next. Real signal from real builders.</p>
-      </div>
-      <div class="poll-actions">
-        <a href="https://github.com/samcolibri/ai-demand-pulse/discussions" target="_blank" class="btn btn-primary">
-          📊 Vote in the Poll
-        </a>
-        <a id="linkedin-share" href="#" class="btn btn-linkedin" target="_blank">
-          in Share on LinkedIn
-        </a>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div class="divider"></div>
-
-<!-- ── LIVE FEED ── -->
-<div class="container">
-  <section class="section">
-    <div class="section-header">
-      <div class="section-title">Live Repo Feed</div>
-      <span class="section-badge badge-green">ANALYZED</span>
-      <div class="section-desc">Latest 10 repos classified by FORGE agents</div>
-    </div>
-    <div class="feed-list" id="feed-list">
-      <div class="loading"><div class="spinner"></div> Loading feed…</div>
-    </div>
-  </section>
-</div>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="container">
-    <div class="footer-row">
-      <span>Powered by FORGE × Hephaestus × agmsg</span>
-      <span style="color:var(--border2)">·</span>
-      <span>Open source</span>
-      <span style="color:var(--border2)">·</span>
-      <a href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">samcolibri/ai-demand-pulse</a>
-      <span style="color:var(--border2)">·</span>
-      <span>Updates every 6 hours</span>
-    </div>
+<div class="hero">
+  <h1><span class="gradient-text">AI Demand Pulse</span></h1>
+  <p>Which industries and business functions are hungry for AI solutions in June 2026? Real GitHub repos. Real signals. Updated every 6 hours by FORGE agents.</p>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-n" id="stat-repos">—</div><div class="stat-label">Repos Analyzed</div></div>
+    <div class="stat"><div class="stat-n" id="stat-clusters">10</div><div class="stat-label">Demand Clusters</div></div>
+    <div class="stat"><div class="stat-n" id="stat-date">—</div><div class="stat-label">Analysis Date</div></div>
+    <div class="stat"><div class="stat-n">6h</div><div class="stat-label">Update Cadence</div></div>
   </div>
+</div>
+
+<div id="main-content">
+  <div class="loading">
+    <div class="loading-spinner"></div>
+    <p>FORGE agents loading demand data...</p>
+  </div>
+</div>
+
+<footer>
+  <p>Powered by <strong>FORGE × Hephaestus × agmsg</strong> · Open source ·
+  <a href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">samcolibri/ai-demand-pulse</a> ·
+  <a href="https://github.com/samcolibri/forge" target="_blank">samcolibri/forge</a></p>
 </footer>
 
 <script>
-// ─── CONFIG ───────────────────────────────────────────────────────────────────
-const INDUSTRIES = [
-  'Healthcare', 'FinTech', 'EdTech', 'LegalTech',
-  'SalesTech', 'DevTools', 'HRTech', 'Marketing',
-  'Logistics', 'Security'
-];
 const BIZ_FUNCTIONS = [
-  'Content Gen', 'Data Analysis', 'Automation', 'Customer Support',
-  'Code Assist', 'Research', 'Document Proc.', 'Sales Outreach',
-  'Risk/Compliance', 'Monitoring'
+  'Product Development','DevOps & Infrastructure','Operations & Logistics',
+  'Data & Analytics','Content & Marketing','Sales & Outreach',
+  'IT & Security','Education & Training','Research & Science',
+  'HR & Recruiting','Legal & Compliance','Customer Support'
+];
+const INDUSTRIES = [
+  'SaaS & Developer Tools','Financial Services','Healthcare',
+  'Education','Legal & Professional Services','Retail & E-commerce',
+  'Media & Entertainment','Manufacturing & Industrial',
+  'Government & Public Sector','HR & Workforce'
 ];
 
-// ─── FALLBACK DATA (used if JSON not yet generated) ───────────────────────────
-const FALLBACK_DEMAND = {
-  repos_analyzed: 512,
-  industries_tracked: 15,
-  updated_at: new Date(Date.now() - 2 * 3600000).toISOString(),
-  next_update_hours: 4,
-  heatmap: generateFallbackHeatmap(),
-  top_clusters: generateFallbackClusters(),
-  by_tool: { claude: 38, codex: 27, gemini: 22, other: 13 },
-  hot_insight: "Medical documentation automation has more active repos in June 2026 than all of FinTech combined — doctors are building faster than bankers.",
-  feed: generateFallbackFeed()
-};
+function heatClass(count) {
+  if (count === 0) return 'cell-0';
+  if (count <= 2) return 'cell-1';
+  if (count <= 5) return 'cell-2';
+  if (count <= 12) return 'cell-3';
+  if (count <= 30) return 'cell-4';
+  return 'cell-5';
+}
 
-function generateFallbackHeatmap() {
-  const m = {};
-  INDUSTRIES.forEach(ind => {
-    m[ind] = {};
-    BIZ_FUNCTIONS.forEach(fn => {
-      const seed = (ind.charCodeAt(0) + fn.charCodeAt(0)) % 23;
-      m[ind][fn] = { count: seed < 3 ? 0 : Math.max(0, seed - 2), top_repo: 'example/repo' };
-    });
+function renderDashboard(data, classified) {
+  document.getElementById('stat-repos').textContent = data.total_repos_analyzed || classified.length;
+  document.getElementById('stat-date').textContent = data.analysis_date || 'June 2026';
+  document.getElementById('nav-repos').textContent = (data.total_repos_analyzed || classified.length) + ' repos';
+  document.getElementById('nav-updated').textContent = 'Updated ' + (data.analysis_date || 'June 2026');
+
+  // Build heatmap matrix from classified repos
+  const matrix = {};
+  INDUSTRIES.forEach(ind => { matrix[ind] = {}; BIZ_FUNCTIONS.forEach(fn => { matrix[ind][fn] = {count:0,repos:[]}; }); });
+
+  classified.forEach(repo => {
+    const ind = repo.industry || '';
+    const fn = repo.business_function || '';
+    if (matrix[ind] && matrix[ind][fn]) {
+      matrix[ind][fn].count++;
+      if (matrix[ind][fn].repos.length < 3) matrix[ind][fn].repos.push(repo);
+    }
   });
-  // Hot spots
-  m['Healthcare']['Document Proc.'] = { count: 24, top_repo: 'healthai/med-notes' };
-  m['Healthcare']['Automation'] = { count: 18, top_repo: 'clinicbot/scheduler' };
-  m['SalesTech']['Sales Outreach'] = { count: 21, top_repo: 'forge-sales/outreach-ai' };
-  m['DevTools']['Code Assist'] = { count: 19, top_repo: 'codex-tools/copilot-plus' };
-  m['FinTech']['Risk/Compliance'] = { count: 16, top_repo: 'finrisk/auto-audit' };
-  m['LegalTech']['Document Proc.'] = { count: 15, top_repo: 'legalai/contract-review' };
-  m['EdTech']['Content Gen'] = { count: 17, top_repo: 'edforge/lesson-builder' };
-  m['Marketing']['Content Gen'] = { count: 20, top_repo: 'adai/copy-engine' };
-  m['Security']['Monitoring'] = { count: 13, top_repo: 'secai/threat-watch' };
-  m['FinTech']['Data Analysis'] = { count: 14, top_repo: 'finlens/market-ai' };
-  return m;
-}
 
-function generateFallbackClusters() {
-  return [
-    { rank:1, biz_function:'Document Processing', industry:'Healthcare', count:24, repos:['healthai/med-notes','clinicai/discharge-summary','medllm/chart-reader'] },
-    { rank:2, biz_function:'Content Generation', industry:'Marketing', count:20, repos:['adai/copy-engine','brandgpt/creative-suite','market-forge/campaign-ai'] },
-    { rank:3, biz_function:'Sales Outreach', industry:'SalesTech', count:21, repos:['forge-sales/outreach-ai','aionxi/sequencer','salesgpt/personalize'] },
-    { rank:4, biz_function:'Code Assistance', industry:'DevTools', count:19, repos:['codex-tools/copilot-plus','dev-ai/review-bot','autocoder/pr-agent'] },
-    { rank:5, biz_function:'Automation', industry:'Healthcare', count:18, repos:['clinicbot/scheduler','medai/prior-auth','healthops/workflow-ai'] },
-    { rank:6, biz_function:'Content Generation', industry:'EdTech', count:17, repos:['edforge/lesson-builder','learnai/quiz-gen','tutorbot/curriculum'] },
-    { rank:7, biz_function:'Risk/Compliance', industry:'FinTech', count:16, repos:['finrisk/auto-audit','complianceai/kyc-bot','bankgpt/regcheck'] },
-    { rank:8, biz_function:'Document Processing', industry:'LegalTech', count:15, repos:['legalai/contract-review','docgpt/clause-extract','lawbot/due-diligence'] },
-    { rank:9, biz_function:'Data Analysis', industry:'FinTech', count:14, repos:['finlens/market-ai','tradegpt/signal-ai','quant-ai/portfolio-bot'] },
-    { rank:10, biz_function:'Monitoring', industry:'Security', count:13, repos:['secai/threat-watch','guardai/siem-bot','sentinel-gpt/alerts'] }
-  ];
-}
+  const maxCount = Math.max(...INDUSTRIES.flatMap(ind => BIZ_FUNCTIONS.map(fn => matrix[ind][fn].count)));
 
-function generateFallbackFeed() {
-  return [
-    { name:'healthai/med-notes', use_case_summary:'AI-powered medical note generation from voice dictation', business_function:'Document Processing', industry:'Healthcare', tool:'Claude' },
-    { name:'forge-sales/outreach-ai', use_case_summary:'Autonomous multi-touch email sequences with personalization', business_function:'Sales Outreach', industry:'SalesTech', tool:'Claude' },
-    { name:'codex-tools/copilot-plus', use_case_summary:'Context-aware code suggestions with repo-wide understanding', business_function:'Code Assistance', industry:'DevTools', tool:'Codex' },
-    { name:'adai/copy-engine', use_case_summary:'High-converting ad copy generation with A/B variants', business_function:'Content Generation', industry:'Marketing', tool:'Claude' },
-    { name:'finrisk/auto-audit', use_case_summary:'Automated compliance checks against FINRA and SEC regs', business_function:'Risk/Compliance', industry:'FinTech', tool:'Gemini' },
-    { name:'edforge/lesson-builder', use_case_summary:'Adaptive lesson plans from teacher notes and standards', business_function:'Content Generation', industry:'EdTech', tool:'Claude' },
-    { name:'legalai/contract-review', use_case_summary:'Clause extraction and risk flagging in contracts', business_function:'Document Processing', industry:'LegalTech', tool:'Gemini' },
-    { name:'secai/threat-watch', use_case_summary:'Real-time log analysis for anomaly and threat detection', business_function:'Monitoring', industry:'Security', tool:'Claude' },
-    { name:'clinicbot/scheduler', use_case_summary:'Natural language appointment booking and rescheduling', business_function:'Automation', industry:'Healthcare', tool:'Codex' },
-    { name:'finlens/market-ai', use_case_summary:'Earnings call transcript analysis and signal extraction', business_function:'Data Analysis', industry:'FinTech', tool:'Gemini' }
-  ];
-}
+  // Build heatmap HTML
+  let hmHTML = '<div class="heatmap-wrap"><table class="heatmap-table"><thead><tr><th>Industry ↓ / Function →</th>';
+  BIZ_FUNCTIONS.forEach(fn => { hmHTML += `<th title="${fn}">${fn.split(' ')[0]}</th>`; });
+  hmHTML += '</tr></thead><tbody>';
+  INDUSTRIES.forEach(ind => {
+    hmHTML += `<tr><td>${ind}</td>`;
+    BIZ_FUNCTIONS.forEach(fn => {
+      const cell = matrix[ind][fn];
+      const cls = heatClass(cell.count);
+      const tooltip = cell.count > 0
+        ? `${cell.count} repos\n${cell.repos.map(r=>r.full_name||r.name||'').join(', ')}`
+        : '0 repos';
+      hmHTML += `<td class="${cls}" title="${tooltip}">${cell.count > 0 ? cell.count : ''}</td>`;
+    });
+    hmHTML += '</tr>';
+  });
+  hmHTML += '</tbody></table></div>';
+  hmHTML += '<div class="heat-legend"><span>Intensity:</span><span class="heat-swatch cell-1"></span>1-2<span class="heat-swatch cell-2"></span>3-5<span class="heat-swatch cell-3"></span>6-12<span class="heat-swatch cell-4"></span>13-30<span class="heat-swatch cell-5"></span>30+</div>';
 
-// ─── HELPERS ─────────────────────────────────────────────────────────────────
-function timeAgo(isoStr) {
-  const d = new Date(isoStr);
-  const mins = Math.round((Date.now() - d) / 60000);
-  if (mins < 60) return `${mins}m ago`;
-  const hrs = Math.round(mins / 60);
-  return `${hrs}h ago`;
-}
+  // Top clusters
+  const top = (data.top_clusters || []).slice(0, 10);
+  const maxRepos = top.length > 0 ? top[0].count : 1;
+  let clustersHTML = '<div class="clusters">';
+  const medals = ['🔥','🔥','🔥','4','5','6','7','8','9','10'];
+  top.forEach((c, i) => {
+    const repos = c.repos || [];
+    let repoLinks = '';
+    repos.slice(0,3).forEach(r => {
+      const name = r.name || (typeof r === 'string' ? r : '');
+      const url = r.url || r.html_url || `https://github.com/${name}`;
+      const display = name.split('/').pop() || name;
+      if (name) repoLinks += `<li><a href="${url}" target="_blank">${display}</a></li>`;
+    });
+    clustersHTML += `
+      <div class="cluster-card">
+        <div class="cluster-rank">${medals[i] || i+1}  #${i+1} demand cluster</div>
+        <div class="cluster-count">${c.count} repos</div>
+        <div class="cluster-label">${c.business_function}</div>
+        <div class="cluster-industry">${c.industry}</div>
+        <div class="cluster-bar"><div class="cluster-fill" style="width:${Math.round(c.count/maxRepos*100)}%"></div></div>
+        ${repoLinks ? `<ul class="cluster-repos">${repoLinks}</ul>` : ''}
+      </div>`;
+  });
+  clustersHTML += '</div>';
 
-function heatClass(n) {
-  if (n === 0) return 'heat-0';
-  if (n <= 3)  return 'heat-low';
-  if (n <= 7)  return 'heat-med';
-  if (n <= 15) return 'heat-high';
-  return 'heat-max';
-}
+  // Tool breakdown
+  const tools = data.by_ai_tool || {};
+  const totalTools = Object.values(tools).reduce((a,b)=>a+b,0) || 1;
+  const toolColors = {claude:'#da7756',codex:'#10b981',gemini:'#3b82f6',other:'#7d8590'};
+  let toolsHTML = '<div class="tool-bars">';
+  Object.entries(tools).forEach(([tool, count]) => {
+    const pct = Math.round(count/totalTools*100);
+    const color = toolColors[tool] || '#7d8590';
+    toolsHTML += `<div class="tool-card">
+      <div class="tool-name">${tool.charAt(0).toUpperCase()+tool.slice(1)}</div>
+      <div class="tool-bar-wrap"><div class="tool-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+      <div class="tool-count" style="color:${color}">${count}</div>
+      <div class="tool-pct">${pct}% of repos</div>
+    </div>`;
+  });
+  toolsHTML += '</div>';
 
-function toolColor(t) {
-  const map = { 'claude':'badge-blue', 'codex':'badge-green', 'gemini':'badge-amber', 'other': '' };
-  const k = t.toLowerCase();
-  return map[k] || 'badge-blue';
-}
+  // Hot insight
+  const insightHTML = `<div class="insight-card">
+    <div class="insight-label">🤯 Hot Insight — June 2026</div>
+    <div class="insight-text">${data.hot_insight || 'Analysis running...'}</div>
+  </div>`;
 
-function barClass(rank) {
-  if (rank <= 3) return 'bar-hot';
-  if (rank <= 6) return 'bar-amber';
-  return 'bar-blue';
-}
+  // Live feed — real repos only
+  const feed = classified.filter(r => r.html_url || r.url).slice(0,15);
+  let feedHTML = '<ul class="feed">';
+  feed.forEach(r => {
+    const url = r.html_url || r.url || '#';
+    const name = r.full_name || r.name || url.replace('https://github.com/','');
+    const desc = r.use_case_summary || r.description || '';
+    const fn = r.business_function || '';
+    const ind = r.industry || '';
+    const tool = r.ai_tool || '';
+    feedHTML += `<li class="feed-item">
+      <div>
+        <div class="feed-name"><a href="${url}" target="_blank">${name}</a></div>
+        ${desc ? `<div class="feed-desc">${desc.slice(0,100)}</div>` : ''}
+      </div>
+      <div class="feed-badges">
+        ${fn ? `<span class="badge badge-blue">${fn}</span>` : ''}
+        ${ind ? `<span class="badge badge-green">${ind.split(' ')[0]}</span>` : ''}
+        ${tool ? `<span class="badge badge-amber">${tool}</span>` : ''}
+      </div>
+    </li>`;
+  });
+  feedHTML += '</ul>';
 
-// ─── RENDER STATS ─────────────────────────────────────────────────────────────
-function renderStats(d) {
-  const el = document.getElementById('stats-row');
-  el.innerHTML = `
-    <div class="stat-chip">
-      <div class="val">${d.repos_analyzed.toLocaleString()}</div>
-      <div class="lbl">Repos Analyzed</div>
+  // CTA
+  const liMsg = encodeURIComponent('🔥 AI agents analyzed 500+ GitHub repos to map where AI demand is hottest in 2026. Live dashboard: https://samcolibri.github.io/ai-demand-pulse/');
+  const ctaHTML = `<div class="cta-card">
+    <div class="cta-title">What AI business problem should we solve next?</div>
+    <div class="cta-sub">Vote in the GitHub Discussions poll · Your vote influences what FORGE agents build next</div>
+    <div class="cta-buttons">
+      <a class="btn btn-primary" href="https://github.com/samcolibri/ai-demand-pulse/discussions" target="_blank">Vote in the poll</a>
+      <a class="btn btn-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsamcolibri.github.io%2Fai-demand-pulse%2F&summary=${liMsg}" target="_blank">Share on LinkedIn</a>
+      <a class="btn btn-secondary" href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">⭐ Star on GitHub</a>
     </div>
-    <div class="stat-chip">
-      <div class="val">${d.industries_tracked}</div>
-      <div class="lbl">Industries Tracked</div>
+  </div>`;
+
+  document.getElementById('main-content').innerHTML = `
+    <div class="section">
+      <div class="section-header"><span class="section-title">Demand Heatmap</span><span class="section-sub">Repos per business function × industry — hover cells for details</span></div>
+      ${hmHTML}
     </div>
-    <div class="stat-chip">
-      <div class="val">${timeAgo(d.updated_at)}</div>
-      <div class="lbl">Last Updated</div>
+    <div class="section">
+      <div class="section-header"><span class="section-title">Top Demand Clusters</span><span class="section-sub">Ranked by number of active GitHub repos</span></div>
+      ${clustersHTML}
     </div>
-    <div class="stat-chip">
-      <div class="val">${d.next_update_hours}h</div>
-      <div class="lbl">Next Update In</div>
+    <div class="section">
+      <div class="section-header"><span class="section-title">By AI Tool</span><span class="section-sub">Which AI tools are builders using?</span></div>
+      ${toolsHTML}
+    </div>
+    <div class="section">
+      ${insightHTML}
+    </div>
+    <div class="section">
+      <div class="section-header"><span class="section-title">Live Repo Feed</span><span class="section-sub">Most recently analyzed repos — all links verified real</span></div>
+      ${feedHTML}
+    </div>
+    <div class="section">
+      ${ctaHTML}
     </div>
   `;
 }
 
-// ─── RENDER HEATMAP ───────────────────────────────────────────────────────────
-function renderHeatmap(d) {
-  const el = document.getElementById('heatmap-container');
-  const hm = d.heatmap;
-
-  let html = '<table class="heatmap-table"><thead><tr><th class="row-label">Industry ↓ / Function →</th>';
-  BIZ_FUNCTIONS.forEach(f => { html += `<th>${f}</th>`; });
-  html += '</tr></thead><tbody>';
-
-  INDUSTRIES.forEach(ind => {
-    html += `<tr><th class="row-label">${ind}</th>`;
-    BIZ_FUNCTIONS.forEach(fn => {
-      const cell = (hm[ind] && hm[ind][fn]) ? hm[ind][fn] : { count:0, top_repo:'' };
-      const cls = heatClass(cell.count);
-      const label = cell.count > 0 ? cell.count : '';
-      html += `<td class="heatmap-cell ${cls}"
-        data-ind="${ind}" data-fn="${fn}"
-        data-count="${cell.count}" data-repo="${cell.top_repo || ''}">${label}</td>`;
-    });
-    html += '</tr>';
-  });
-
-  html += `</tbody></table>
-  <div class="heatmap-legend">
-    <span>Demand intensity:</span>
-    <div class="legend-item"><div class="legend-box" style="background:var(--bg3)"></div> 0</div>
-    <div class="legend-item"><div class="legend-box" style="background:var(--cell-low)"></div> 1–3</div>
-    <div class="legend-item"><div class="legend-box" style="background:var(--cell-med)"></div> 4–7</div>
-    <div class="legend-item"><div class="legend-box" style="background:var(--cell-high)"></div> 8–15</div>
-    <div class="legend-item"><div class="legend-box" style="background:var(--cell-max)"></div> 16+</div>
-  </div>`;
-  el.innerHTML = html;
-
-  // Tooltip
-  const tooltip = document.getElementById('tooltip');
-  document.querySelectorAll('.heatmap-cell').forEach(cell => {
-    cell.addEventListener('mousemove', e => {
-      document.getElementById('tt-title').textContent = `${cell.dataset.fn} × ${cell.dataset.ind}`;
-      document.getElementById('tt-count').textContent = `${cell.dataset.count} repos`;
-      document.getElementById('tt-repo').textContent = cell.dataset.repo ? `Top: ${cell.dataset.repo}` : '';
-      tooltip.style.display = 'block';
-      tooltip.style.left = (e.clientX + 14) + 'px';
-      tooltip.style.top  = (e.clientY - 10) + 'px';
-    });
-    cell.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-  });
-}
-
-// ─── RENDER CLUSTERS ──────────────────────────────────────────────────────────
-function renderClusters(d) {
-  const el = document.getElementById('clusters-grid');
-  const maxCount = Math.max(...d.top_clusters.map(c => c.count));
-
-  el.innerHTML = d.top_clusters.map(c => {
-    const pct = Math.round((c.count / maxCount) * 100);
-    const rankEmoji = c.rank <= 3 ? ['🔥','🔥','🔥'][c.rank-1] : `#${c.rank}`;
-    const topClass = c.rank <= 3 ? 'top3' : '';
-    const repoLinks = (c.repos || []).slice(0,3).map(r =>
-      `<a class="repo-link" href="https://github.com/${r}" target="_blank">${r}</a>`
-    ).join('');
-
-    return `
-    <div class="cluster-card ${topClass}">
-      <div class="cluster-header">
-        <div class="rank-badge">${rankEmoji}</div>
-        <div class="cluster-meta">
-          <div class="cluster-func">${c.biz_function}</div>
-          <div class="cluster-industry">${c.industry}</div>
-        </div>
-        <div class="cluster-count">${c.count}<span> repos</span></div>
-      </div>
-      <div class="bar-wrap">
-        <div class="bar-fill ${barClass(c.rank)}" style="width:${pct}%"></div>
-      </div>
-      <div class="repo-links">${repoLinks}</div>
-    </div>`;
-  }).join('');
-}
-
-// ─── RENDER TOOL CHART ────────────────────────────────────────────────────────
-function renderTools(d) {
-  const el = document.getElementById('tool-chart');
-  const t = d.by_tool;
-  const total = Object.values(t).reduce((a,b) => a+b, 0);
-  const tools = [
-    { name:'Claude',  pct: t.claude, fill:'fill-claude' },
-    { name:'Codex',   pct: t.codex,  fill:'fill-codex'  },
-    { name:'Gemini',  pct: t.gemini, fill:'fill-gemini' },
-    { name:'Other',   pct: t.other,  fill:'fill-other'  }
-  ];
-  el.innerHTML = `<div class="tool-bars">${tools.map(t => `
-    <div class="tool-row">
-      <div class="tool-name">${t.name}</div>
-      <div class="tool-bar-track">
-        <div class="tool-bar-fill ${t.fill}" style="width:0%" data-target="${t.pct}%">
-          ${t.pct}%
-        </div>
-      </div>
-      <div class="tool-pct">${t.pct}%</div>
-    </div>`).join('')}
-  </div>`;
-  // Animate bars
-  setTimeout(() => {
-    document.querySelectorAll('.tool-bar-fill').forEach(b => {
-      b.style.width = b.dataset.target;
-    });
-  }, 100);
-}
-
-// ─── RENDER INSIGHT ───────────────────────────────────────────────────────────
-function renderInsight(d) {
-  const el = document.getElementById('insight-container');
-  el.innerHTML = `
-    <div class="insight-card">
-      <div class="insight-icon">🤯</div>
-      <div class="insight-label">Biggest Surprise This Cycle</div>
-      <div class="insight-text">${d.hot_insight}</div>
-    </div>`;
-}
-
-// ─── RENDER FEED ──────────────────────────────────────────────────────────────
-function renderFeed(d) {
-  const el = document.getElementById('feed-list');
-  el.innerHTML = d.feed.slice(0,10).map(r => `
-    <div class="feed-item">
-      <div class="feed-dot"></div>
-      <div class="feed-content">
-        <div class="feed-name">${r.name}</div>
-        <div class="feed-summary">${r.use_case_summary}</div>
-        <div class="feed-badges">
-          <span class="feed-badge badge-hot">${r.business_function}</span>
-          <span class="feed-badge badge-amber">${r.industry}</span>
-          <span class="feed-badge badge-blue">${r.tool}</span>
-        </div>
-      </div>
-    </div>`).join('');
-}
-
-// ─── LINKEDIN SHARE ───────────────────────────────────────────────────────────
-function setupLinkedIn(d) {
-  const url = 'https://samcolibri.github.io/ai-demand-pulse/';
-  const top3 = d.top_clusters.slice(0,3).map(c => `${c.biz_function} × ${c.industry} (${c.count} repos)`).join(', ');
-  const msg = encodeURIComponent(
-    `🔥 AI agents analyzed 500+ GitHub repos to map where AI demand is HOTTEST in June 2026.\n\nTop clusters: ${top3}\n\n🤯 ${d.hot_insight}\n\nLive demand map: ${url}\n\n#AI #BuildInPublic #FORGE #OpenSource`
-  );
-  document.getElementById('linkedin-share').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&summary=${msg}`;
-}
-
-// ─── BOOTSTRAP ────────────────────────────────────────────────────────────────
 async function loadData() {
-  let data = null;
   try {
-    const res = await fetch('./data/demand_analysis.json');
-    if (res.ok) data = await res.json();
-  } catch(e) { /* fallback */ }
-
-  if (!data) data = FALLBACK_DEMAND;
-
-  renderStats(data);
-  renderHeatmap(data);
-  renderClusters(data);
-  renderTools(data);
-  renderInsight(data);
-
-  // Feed: try repos_classified.json first
-  let feedData = data;
-  try {
-    const r2 = await fetch('./data/repos_classified.json');
-    if (r2.ok) {
-      const repos = await r2.json();
-      feedData = { ...data, feed: repos.slice(0,10) };
-    }
-  } catch(e) { /* use demand data feed */ }
-  renderFeed(feedData);
-  setupLinkedIn(data);
+    const [r1, r2] = await Promise.all([
+      fetch('./data/demand_analysis.json'),
+      fetch('./data/repos_classified.json')
+    ]);
+    if (!r1.ok || !r2.ok) throw new Error('Data files not found');
+    const [analysis, classified] = await Promise.all([r1.json(), r2.json()]);
+    renderDashboard(analysis, classified);
+  } catch (e) {
+    document.getElementById('main-content').innerHTML = `
+      <div class="loading">
+        <p>⏳ FORGE agents are running the first analysis...</p>
+        <p style="margin-top:8px;font-size:.85rem">Data will appear after the first GitHub Actions run completes.</p>
+        <p style="margin-top:16px"><a href="https://github.com/samcolibri/ai-demand-pulse/actions" style="color:#3b82f6">Watch the live run →</a></p>
+      </div>`;
+  }
 }
 
-document.addEventListener('DOMContentLoaded', loadData);
+loadData();
 </script>
 </body>
 </html>
