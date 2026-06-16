@@ -1,583 +1,548 @@
 {
   "demand_matrix": {
-    "Legal & Compliance": {
-      "Financial Services": 11,
-      "Legal & Professional Services": 41,
-      "Education": 1,
-      "HR & Workforce": 2,
-      "SaaS & Developer Tools": 5
-    },
-    "Education & Training": {
-      "Financial Services": 13,
-      "Education": 42,
-      "Sales & Marketing": 2,
-      "HR & Workforce": 9,
-      "Real Estate": 1,
-      "Retail & E-commerce": 3,
-      "Media & Content": 1,
-      "SaaS & Developer Tools": 5
-    },
-    "Sales & Outreach": {
+    "Code Generation & DevOps": {
+      "SaaS & Developer Tools": 37,
+      "Legal": 4,
       "Financial Services": 3,
+      "Education": 8,
       "Healthcare": 1,
-      "Sales & Marketing": 12,
-      "Real Estate": 5,
-      "Retail & E-commerce": 1,
-      "Media & Content": 2,
-      "SaaS & Developer Tools": 1
+      "Marketing & Content": 1
     },
-    "Healthcare & Clinical": {
+    "LLM Infrastructure": {
+      "Education": 9,
+      "SaaS & Developer Tools": 14,
+      "Financial Services": 1
+    },
+    "AI Agent Frameworks": {
+      "Legal": 12,
+      "SaaS & Developer Tools": 80,
+      "Education": 25,
       "Financial Services": 7,
-      "Healthcare": 7,
-      "Retail & E-commerce": 2
+      "Sales & CRM": 3,
+      "HR & Workforce": 7,
+      "Marketing & Content": 2
     },
-    "Customer Support": {
-      "Financial Services": 6,
-      "Healthcare": 36,
-      "Legal & Professional Services": 8,
-      "Education": 7,
-      "Sales & Marketing": 2,
-      "Customer Support": 64,
-      "HR & Workforce": 6,
-      "Real Estate": 3,
-      "Retail & E-commerce": 9,
-      "Media & Content": 3,
-      "SaaS & Developer Tools": 5
+    "Workflow Automation": {
+      "SaaS & Developer Tools": 10,
+      "Education": 3,
+      "HR & Workforce": 1
     },
-    "Finance & Analytics": {
-      "Financial Services": 20,
-      "Real Estate": 2,
-      "Retail & E-commerce": 1
+    "Conversational AI": {
+      "Education": 5,
+      "SaaS & Developer Tools": 23,
+      "HR & Workforce": 1,
+      "Healthcare": 1
     },
-    "Content & Marketing": {
+    "Multimodal & Document AI": {
+      "Education": 6,
+      "SaaS & Developer Tools": 4,
+      "Sales & CRM": 1,
+      "Healthcare": 1
+    },
+    "RAG & Knowledge Retrieval": {
+      "SaaS & Developer Tools": 12,
+      "Marketing & Content": 1,
       "Financial Services": 1,
-      "Real Estate": 1,
-      "Retail & E-commerce": 1,
-      "Media & Content": 35,
-      "SaaS & Developer Tools": 2
-    },
-    "HR & Recruiting": {
-      "HR & Workforce": 26,
-      "Real Estate": 1,
-      "Media & Content": 1
-    },
-    "Operations & Logistics": {
-      "Real Estate": 8
-    },
-    "Retail Operations": {
-      "Retail & E-commerce": 8,
-      "SaaS & Developer Tools": 4
-    },
-    "Product Development": {
-      "SaaS & Developer Tools": 27
+      "Education": 3
     },
     "Data & Analytics": {
-      "SaaS & Developer Tools": 2
+      "Education": 2,
+      "SaaS & Developer Tools": 1
     },
-    "DevOps & Infrastructure": {
-      "SaaS & Developer Tools": 4
+    "Web & Search Automation": {
+      "Education": 1
+    },
+    "Content Generation": {
+      "SaaS & Developer Tools": 1
     }
   },
   "top_clusters": [
     {
-      "business_function": "Customer Support",
-      "industry": "Customer Support",
-      "count": 64,
-      "repos": [
-        {
-          "name": "Bytedesk/bytedesk",
-          "url": "https://github.com/Bytedesk/bytedesk"
-        },
-        {
-          "name": "huabeitech/agent-desk",
-          "url": "https://github.com/huabeitech/agent-desk"
-        },
-        {
-          "name": "wcr-karan/aurora-ai",
-          "url": "https://github.com/wcr-karan/aurora-ai"
-        },
-        {
-          "name": "jawwad-ali/ai-customer-support-agent",
-          "url": "https://github.com/jawwad-ali/ai-customer-support-agent"
-        },
-        {
-          "name": "UpdateAutocrat/ai-customer-support-intercom-ai-zendesk-ai-tidio",
-          "url": "https://github.com/UpdateAutocrat/ai-customer-support-intercom-ai-zendesk-ai-tidio"
-        }
-      ]
-    },
-    {
-      "business_function": "Education & Training",
-      "industry": "Education",
-      "count": 42,
-      "repos": [
-        {
-          "name": "iliaskalalou/agora-agentic-tutor",
-          "url": "https://github.com/iliaskalalou/agora-agentic-tutor"
-        },
-        {
-          "name": "Pragnya-dash/IntelliPath",
-          "url": "https://github.com/Pragnya-dash/IntelliPath"
-        },
-        {
-          "name": "amna1189/Flappy-Bird-Game",
-          "url": "https://github.com/amna1189/Flappy-Bird-Game"
-        },
-        {
-          "name": "amna1189/Student-Management-System",
-          "url": "https://github.com/amna1189/Student-Management-System"
-        },
-        {
-          "name": "amna1189/Alumni-Management-System",
-          "url": "https://github.com/amna1189/Alumni-Management-System"
-        }
-      ]
-    },
-    {
-      "business_function": "Legal & Compliance",
-      "industry": "Legal & Professional Services",
-      "count": 41,
-      "repos": [
-        {
-          "name": "api-evangelist/robin-ai",
-          "url": "https://github.com/api-evangelist/robin-ai"
-        },
-        {
-          "name": "ayushsamor21/CoSora",
-          "url": "https://github.com/ayushsamor21/CoSora"
-        },
-        {
-          "name": "lowtidebuild/contract-review-agent",
-          "url": "https://github.com/lowtidebuild/contract-review-agent"
-        },
-        {
-          "name": "shreekriti11/legal-ai-evaluation-examples",
-          "url": "https://github.com/shreekriti11/legal-ai-evaluation-examples"
-        },
-        {
-          "name": "shreekriti11/kritishree-law",
-          "url": "https://github.com/shreekriti11/kritishree-law"
-        }
-      ]
-    },
-    {
-      "business_function": "Customer Support",
-      "industry": "Healthcare",
-      "count": 36,
-      "repos": [
-        {
-          "name": "temitayodahunsi777/scrimed-site",
-          "url": "https://github.com/temitayodahunsi777/scrimed-site"
-        },
-        {
-          "name": "snehafeekappachavan/ai-differential-diagnosis-system",
-          "url": "https://github.com/snehafeekappachavan/ai-differential-diagnosis-system"
-        },
-        {
-          "name": "sarianaramoutar/carisurg-portfolio",
-          "url": "https://github.com/sarianaramoutar/carisurg-portfolio"
-        },
-        {
-          "name": "Rafkhan01/AI-healthcare-system",
-          "url": "https://github.com/Rafkhan01/AI-healthcare-system"
-        },
-        {
-          "name": "vivabaranwal/MediMindAI",
-          "url": "https://github.com/vivabaranwal/MediMindAI"
-        }
-      ]
-    },
-    {
-      "business_function": "Content & Marketing",
-      "industry": "Media & Content",
-      "count": 35,
-      "repos": [
-        {
-          "name": "talha-096/GenMark",
-          "url": "https://github.com/talha-096/GenMark"
-        },
-        {
-          "name": "youzaahsan/SocialMedia-AI-Toolkit",
-          "url": "https://github.com/youzaahsan/SocialMedia-AI-Toolkit"
-        },
-        {
-          "name": "ruca-radio/free-ai-prompts",
-          "url": "https://github.com/ruca-radio/free-ai-prompts"
-        },
-        {
-          "name": "siam-09/BCN-Content-Gen-AI",
-          "url": "https://github.com/siam-09/BCN-Content-Gen-AI"
-        },
-        {
-          "name": "sbshihab24/AI-Copy-Generator",
-          "url": "https://github.com/sbshihab24/AI-Copy-Generator"
-        }
-      ]
-    },
-    {
-      "business_function": "Product Development",
+      "business_function": "AI Agent Frameworks",
       "industry": "SaaS & Developer Tools",
-      "count": 27,
+      "count": 80,
       "repos": [
         {
-          "name": "bobmatnyc/trusty-tools",
-          "url": "https://github.com/bobmatnyc/trusty-tools"
+          "name": "langflow-ai/langflow",
+          "url": "https://github.com/langflow-ai/langflow"
         },
         {
-          "name": "hashgraph-online/hol-guard",
-          "url": "https://github.com/hashgraph-online/hol-guard"
+          "name": "langgenius/dify",
+          "url": "https://github.com/langgenius/dify"
         },
         {
-          "name": "jayteealao/agent-skills",
-          "url": "https://github.com/jayteealao/agent-skills"
+          "name": "langchain-ai/langchain",
+          "url": "https://github.com/langchain-ai/langchain"
         },
         {
-          "name": "adeelahmad/agentic-agile",
-          "url": "https://github.com/adeelahmad/agentic-agile"
+          "name": "firecrawl/firecrawl",
+          "url": "https://github.com/firecrawl/firecrawl"
         },
         {
-          "name": "jc-cole/agent-box",
-          "url": "https://github.com/jc-cole/agent-box"
+          "name": "Shubhamsaboo/awesome-llm-apps",
+          "url": "https://github.com/Shubhamsaboo/awesome-llm-apps"
         }
       ]
     },
     {
-      "business_function": "HR & Recruiting",
-      "industry": "HR & Workforce",
-      "count": 26,
+      "business_function": "Code Generation & DevOps",
+      "industry": "SaaS & Developer Tools",
+      "count": 37,
       "repos": [
         {
-          "name": "atharvpatil0725/-AI-powered-Resume-Analyzer-and-Talent-Ranking-System-",
-          "url": "https://github.com/atharvpatil0725/-AI-powered-Resume-Analyzer-and-Talent-Ranking-System-"
+          "name": "affaan-m/ECC",
+          "url": "https://github.com/affaan-m/ECC"
         },
         {
-          "name": "vijaydevverse/AI-Resume-Screening-System",
-          "url": "https://github.com/vijaydevverse/AI-Resume-Screening-System"
+          "name": "Significant-Gravitas/AutoGPT",
+          "url": "https://github.com/Significant-Gravitas/AutoGPT"
         },
         {
-          "name": "javidjs07/Ai-Resume-screening-platform",
-          "url": "https://github.com/javidjs07/Ai-Resume-screening-platform"
+          "name": "hacksider/Deep-Live-Cam",
+          "url": "https://github.com/hacksider/Deep-Live-Cam"
         },
         {
-          "name": "saud-26/AI-HR-",
-          "url": "https://github.com/saud-26/AI-HR-"
+          "name": "nextlevelbuilder/ui-ux-pro-max-skill",
+          "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"
         },
         {
-          "name": "vishwajeetnangare2002/HIRELENS-AI-MAIN",
-          "url": "https://github.com/vishwajeetnangare2002/HIRELENS-AI-MAIN"
+          "name": "harry0703/MoneyPrinterTurbo",
+          "url": "https://github.com/harry0703/MoneyPrinterTurbo"
         }
       ]
     },
     {
-      "business_function": "Finance & Analytics",
-      "industry": "Financial Services",
-      "count": 20,
+      "business_function": "AI Agent Frameworks",
+      "industry": "Education",
+      "count": 25,
       "repos": [
         {
-          "name": "priya0401pd/credit_card_spend_summarizer",
-          "url": "https://github.com/priya0401pd/credit_card_spend_summarizer"
+          "name": "microsoft/ML-For-Beginners",
+          "url": "https://github.com/microsoft/ML-For-Beginners"
         },
         {
-          "name": "rganeshphanindra/InsurIQ",
-          "url": "https://github.com/rganeshphanindra/InsurIQ"
+          "name": "shareAI-lab/learn-claude-code",
+          "url": "https://github.com/shareAI-lab/learn-claude-code"
         },
         {
-          "name": "priya0401pd/Insurance_Claims_03",
-          "url": "https://github.com/priya0401pd/Insurance_Claims_03"
+          "name": "unslothai/unsloth",
+          "url": "https://github.com/unslothai/unsloth"
         },
         {
-          "name": "dineshingale/InsuranceClaim-AI",
-          "url": "https://github.com/dineshingale/InsuranceClaim-AI"
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
         },
         {
-          "name": "nishantkr0904/ai-insurance-damage-assessment",
-          "url": "https://github.com/nishantkr0904/ai-insurance-damage-assessment"
+          "name": "ruvnet/ruflo",
+          "url": "https://github.com/ruvnet/ruflo"
         }
       ]
     },
     {
-      "business_function": "Education & Training",
-      "industry": "Financial Services",
-      "count": 13,
+      "business_function": "Conversational AI",
+      "industry": "SaaS & Developer Tools",
+      "count": 23,
       "repos": [
         {
-          "name": "NitinSingh888/invoice-copilot",
-          "url": "https://github.com/NitinSingh888/invoice-copilot"
+          "name": "microsoft/generative-ai-for-beginners",
+          "url": "https://github.com/microsoft/generative-ai-for-beginners"
         },
         {
-          "name": "vaishnaviii2005/FraudLens",
-          "url": "https://github.com/vaishnaviii2005/FraudLens"
+          "name": "ChatGPTNextWeb/NextChat",
+          "url": "https://github.com/ChatGPTNextWeb/NextChat"
         },
         {
-          "name": "RanaMusabBinTariq/ClaimIQ-Pro",
-          "url": "https://github.com/RanaMusabBinTariq/ClaimIQ-Pro"
+          "name": "xtekky/gpt4free",
+          "url": "https://github.com/xtekky/gpt4free"
         },
         {
-          "name": "paras-the-coder/FraudGuard-Ai",
-          "url": "https://github.com/paras-the-coder/FraudGuard-Ai"
+          "name": "PlexPt/awesome-chatgpt-prompts-zh",
+          "url": "https://github.com/PlexPt/awesome-chatgpt-prompts-zh"
         },
         {
-          "name": "gaganz45/health-insurance-fraud-detection-dashboard",
-          "url": "https://github.com/gaganz45/health-insurance-fraud-detection-dashboard"
+          "name": "sansan0/TrendRadar",
+          "url": "https://github.com/sansan0/TrendRadar"
         }
       ]
     },
     {
-      "business_function": "Sales & Outreach",
-      "industry": "Sales & Marketing",
+      "business_function": "LLM Infrastructure",
+      "industry": "SaaS & Developer Tools",
+      "count": 14,
+      "repos": [
+        {
+          "name": "ollama/ollama",
+          "url": "https://github.com/ollama/ollama"
+        },
+        {
+          "name": "vllm-project/vllm",
+          "url": "https://github.com/vllm-project/vllm"
+        },
+        {
+          "name": "JuliusBrussee/caveman",
+          "url": "https://github.com/JuliusBrussee/caveman"
+        },
+        {
+          "name": "MemPalace/mempalace",
+          "url": "https://github.com/MemPalace/mempalace"
+        },
+        {
+          "name": "jingyaogong/minimind",
+          "url": "https://github.com/jingyaogong/minimind"
+        }
+      ]
+    },
+    {
+      "business_function": "AI Agent Frameworks",
+      "industry": "Legal",
       "count": 12,
       "repos": [
         {
-          "name": "MLbyTharun/crm-outreach-assistant",
-          "url": "https://github.com/MLbyTharun/crm-outreach-assistant"
+          "name": "NousResearch/hermes-agent",
+          "url": "https://github.com/NousResearch/hermes-agent"
         },
         {
-          "name": "Kalyan630030/B2B---CRM",
-          "url": "https://github.com/Kalyan630030/B2B---CRM"
+          "name": "Mintplex-Labs/anything-llm",
+          "url": "https://github.com/Mintplex-Labs/anything-llm"
         },
         {
-          "name": "GSK0616/AI-Lead-Generation-Outreach-Platform",
-          "url": "https://github.com/GSK0616/AI-Lead-Generation-Outreach-Platform"
+          "name": "CherryHQ/cherry-studio",
+          "url": "https://github.com/CherryHQ/cherry-studio"
         },
         {
-          "name": "NewDeveloper888/ai-sales-workflow",
-          "url": "https://github.com/NewDeveloper888/ai-sales-workflow"
+          "name": "zhayujie/CowAgent",
+          "url": "https://github.com/zhayujie/CowAgent"
         },
         {
-          "name": "swaggyashwin/LeadPulse-AI-Autonomous-Lead-Engagement-Scoring-Ecosystem_ML",
-          "url": "https://github.com/swaggyashwin/LeadPulse-AI-Autonomous-Lead-Engagement-Scoring-Ecosystem_ML"
+          "name": "HKUDS/nanobot",
+          "url": "https://github.com/HKUDS/nanobot"
         }
       ]
     },
     {
-      "business_function": "Legal & Compliance",
+      "business_function": "RAG & Knowledge Retrieval",
+      "industry": "SaaS & Developer Tools",
+      "count": 12,
+      "repos": [
+        {
+          "name": "open-webui/open-webui",
+          "url": "https://github.com/open-webui/open-webui"
+        },
+        {
+          "name": "milvus-io/milvus",
+          "url": "https://github.com/milvus-io/milvus"
+        },
+        {
+          "name": "QuivrHQ/quivr",
+          "url": "https://github.com/QuivrHQ/quivr"
+        },
+        {
+          "name": "HKUDS/LightRAG",
+          "url": "https://github.com/HKUDS/LightRAG"
+        },
+        {
+          "name": "XingangPan/DragGAN",
+          "url": "https://github.com/XingangPan/DragGAN"
+        }
+      ]
+    },
+    {
+      "business_function": "Workflow Automation",
+      "industry": "SaaS & Developer Tools",
+      "count": 10,
+      "repos": [
+        {
+          "name": "n8n-io/n8n",
+          "url": "https://github.com/n8n-io/n8n"
+        },
+        {
+          "name": "D4Vinci/Scrapling",
+          "url": "https://github.com/D4Vinci/Scrapling"
+        },
+        {
+          "name": "lightpanda-io/browser",
+          "url": "https://github.com/lightpanda-io/browser"
+        },
+        {
+          "name": "langfuse/langfuse",
+          "url": "https://github.com/langfuse/langfuse"
+        },
+        {
+          "name": "microsoft/semantic-kernel",
+          "url": "https://github.com/microsoft/semantic-kernel"
+        }
+      ]
+    },
+    {
+      "business_function": "LLM Infrastructure",
+      "industry": "Education",
+      "count": 9,
+      "repos": [
+        {
+          "name": "tensorflow/tensorflow",
+          "url": "https://github.com/tensorflow/tensorflow"
+        },
+        {
+          "name": "pytorch/pytorch",
+          "url": "https://github.com/pytorch/pytorch"
+        },
+        {
+          "name": "mlabonne/llm-course",
+          "url": "https://github.com/mlabonne/llm-course"
+        },
+        {
+          "name": "keras-team/keras",
+          "url": "https://github.com/keras-team/keras"
+        },
+        {
+          "name": "ultralytics/yolov5",
+          "url": "https://github.com/ultralytics/yolov5"
+        }
+      ]
+    },
+    {
+      "business_function": "Code Generation & DevOps",
+      "industry": "Education",
+      "count": 8,
+      "repos": [
+        {
+          "name": "dair-ai/Prompt-Engineering-Guide",
+          "url": "https://github.com/dair-ai/Prompt-Engineering-Guide"
+        },
+        {
+          "name": "ruvnet/RuView",
+          "url": "https://github.com/ruvnet/RuView"
+        },
+        {
+          "name": "labmlai/annotated_deep_learning_paper_implementations",
+          "url": "https://github.com/labmlai/annotated_deep_learning_paper_implementations"
+        },
+        {
+          "name": "roboflow/supervision",
+          "url": "https://github.com/roboflow/supervision"
+        },
+        {
+          "name": "asgeirtj/system_prompts_leaks",
+          "url": "https://github.com/asgeirtj/system_prompts_leaks"
+        }
+      ]
+    },
+    {
+      "business_function": "AI Agent Frameworks",
       "industry": "Financial Services",
-      "count": 11,
+      "count": 7,
       "repos": [
         {
-          "name": "bizzfincomsolution-maker/ai-cfo-platform",
-          "url": "https://github.com/bizzfincomsolution-maker/ai-cfo-platform"
+          "name": "TauricResearch/TradingAgents",
+          "url": "https://github.com/TauricResearch/TradingAgents"
         },
         {
-          "name": "Peiling-Z/AI-FinOps-Platform",
-          "url": "https://github.com/Peiling-Z/AI-FinOps-Platform"
+          "name": "hiyouga/LlamaFactory",
+          "url": "https://github.com/hiyouga/LlamaFactory"
         },
         {
-          "name": "aeinst-digital/aeinst-digital-reg-d-whitepaper",
-          "url": "https://github.com/aeinst-digital/aeinst-digital-reg-d-whitepaper"
+          "name": "OpenBB-finance/OpenBB",
+          "url": "https://github.com/OpenBB-finance/OpenBB"
         },
         {
-          "name": "metlone123-beep/Metlone-Smarter-Business-Management-Through-Intelligent-Automation",
-          "url": "https://github.com/metlone123-beep/Metlone-Smarter-Business-Management-Through-Intelligent-Automation"
+          "name": "ZhuLinsen/daily_stock_analysis",
+          "url": "https://github.com/ZhuLinsen/daily_stock_analysis"
         },
         {
-          "name": "ruddrraa/munshiji",
-          "url": "https://github.com/ruddrraa/munshiji"
+          "name": "elizaOS/eliza",
+          "url": "https://github.com/elizaOS/eliza"
         }
       ]
     },
     {
-      "business_function": "Education & Training",
+      "business_function": "AI Agent Frameworks",
       "industry": "HR & Workforce",
-      "count": 9,
+      "count": 7,
       "repos": [
         {
-          "name": "KavinKumar1403/ai-resume-screening-platform",
-          "url": "https://github.com/KavinKumar1403/ai-resume-screening-platform"
+          "name": "lobehub/lobehub",
+          "url": "https://github.com/lobehub/lobehub"
         },
         {
-          "name": "StackVesion/AI-Powered-HR-Management-Applicant-Tracking-System-ATS-",
-          "url": "https://github.com/StackVesion/AI-Powered-HR-Management-Applicant-Tracking-System-ATS-"
+          "name": "santifer/career-ops",
+          "url": "https://github.com/santifer/career-ops"
         },
         {
-          "name": "22-sakshi-08/ResumeIQ-AI",
-          "url": "https://github.com/22-sakshi-08/ResumeIQ-AI"
+          "name": "khoj-ai/khoj",
+          "url": "https://github.com/khoj-ai/khoj"
         },
         {
-          "name": "123Anujyadav/AI-Recruitment-website-for-small-business",
-          "url": "https://github.com/123Anujyadav/AI-Recruitment-website-for-small-business"
+          "name": "feder-cr/Jobs_Applier_AI_Agent_AIHawk",
+          "url": "https://github.com/feder-cr/Jobs_Applier_AI_Agent_AIHawk"
         },
         {
-          "name": "asifhussainsk53-prog/ATS-Resume-Analyzer",
-          "url": "https://github.com/asifhussainsk53-prog/ATS-Resume-Analyzer"
+          "name": "simstudioai/sim",
+          "url": "https://github.com/simstudioai/sim"
         }
       ]
     },
     {
-      "business_function": "Customer Support",
-      "industry": "Retail & E-commerce",
-      "count": 9,
+      "business_function": "Multimodal & Document AI",
+      "industry": "Education",
+      "count": 6,
       "repos": [
         {
-          "name": "Hazjel/marketplace",
-          "url": "https://github.com/Hazjel/marketplace"
+          "name": "huggingface/transformers",
+          "url": "https://github.com/huggingface/transformers"
         },
         {
-          "name": "AmalRajMP/DealHive",
-          "url": "https://github.com/AmalRajMP/DealHive"
+          "name": "d2l-ai/d2l-zh",
+          "url": "https://github.com/d2l-ai/d2l-zh"
         },
         {
-          "name": "Dr0510/dr-mart-ai-marketplace",
-          "url": "https://github.com/Dr0510/dr-mart-ai-marketplace"
+          "name": "tesseract-ocr/tesseract",
+          "url": "https://github.com/tesseract-ocr/tesseract"
         },
         {
-          "name": "opula1234/smart-ecommerce-bot",
-          "url": "https://github.com/opula1234/smart-ecommerce-bot"
+          "name": "ultralytics/ultralytics",
+          "url": "https://github.com/ultralytics/ultralytics"
         },
         {
-          "name": "AREEBAAAAA/ecommerce-store-ai-assistant",
-          "url": "https://github.com/AREEBAAAAA/ecommerce-store-ai-assistant"
+          "name": "microsoft/AI-For-Beginners",
+          "url": "https://github.com/microsoft/AI-For-Beginners"
         }
       ]
     },
     {
-      "business_function": "Customer Support",
-      "industry": "Legal & Professional Services",
-      "count": 8,
+      "business_function": "Conversational AI",
+      "industry": "Education",
+      "count": 5,
       "repos": [
         {
-          "name": "akashmsprasad/AI-Powered-Smart-Contract-Review-Assistant",
-          "url": "https://github.com/akashmsprasad/AI-Powered-Smart-Contract-Review-Assistant"
+          "name": "f/prompts.chat",
+          "url": "https://github.com/f/prompts.chat"
         },
         {
-          "name": "backendwithvishal/LexAI",
-          "url": "https://github.com/backendwithvishal/LexAI"
+          "name": "rasbt/LLMs-from-scratch",
+          "url": "https://github.com/rasbt/LLMs-from-scratch"
         },
         {
-          "name": "waqasshah88/legalcopilot",
-          "url": "https://github.com/waqasshah88/legalcopilot"
+          "name": "haotian-liu/LLaVA",
+          "url": "https://github.com/haotian-liu/LLaVA"
         },
         {
-          "name": "sakshamVerma08/Jurify-",
-          "url": "https://github.com/sakshamVerma08/Jurify-"
+          "name": "lukasmasuch/best-of-ml-python",
+          "url": "https://github.com/lukasmasuch/best-of-ml-python"
         },
         {
-          "name": "rituparnaaa17/LegalAssistAI",
-          "url": "https://github.com/rituparnaaa17/LegalAssistAI"
+          "name": "EmbraceAGI/awesome-chatgpt-zh",
+          "url": "https://github.com/EmbraceAGI/awesome-chatgpt-zh"
         }
       ]
     },
     {
-      "business_function": "Operations & Logistics",
-      "industry": "Real Estate",
-      "count": 8,
+      "business_function": "Multimodal & Document AI",
+      "industry": "SaaS & Developer Tools",
+      "count": 4,
       "repos": [
         {
-          "name": "Sanasaifi786/GharAI",
-          "url": "https://github.com/Sanasaifi786/GharAI"
+          "name": "microsoft/markitdown",
+          "url": "https://github.com/microsoft/markitdown"
         },
         {
-          "name": "dungnotnull/vn-real-estate-scout-agent",
-          "url": "https://github.com/dungnotnull/vn-real-estate-scout-agent"
+          "name": "upstash/context7",
+          "url": "https://github.com/upstash/context7"
         },
         {
-          "name": "twstrogs/land-search",
-          "url": "https://github.com/twstrogs/land-search"
+          "name": "ggml-org/whisper.cpp",
+          "url": "https://github.com/ggml-org/whisper.cpp"
         },
         {
-          "name": "Shani9027/360ghar-AI-Property-Search",
-          "url": "https://github.com/Shani9027/360ghar-AI-Property-Search"
-        },
-        {
-          "name": "BushraRizwan2/RealEstateAI",
-          "url": "https://github.com/BushraRizwan2/RealEstateAI"
+          "name": "lucidrains/vit-pytorch",
+          "url": "https://github.com/lucidrains/vit-pytorch"
         }
       ]
     }
   ],
   "by_ai_tool": {
-    "other": 206,
-    "openai": 42,
-    "claude": 136,
-    "gemini": 49,
-    "open-source": 32,
-    "codex": 5
+    "Claude / Anthropic": 77,
+    "Multi-model / Other": 127,
+    "OpenAI / GPT": 73,
+    "Google Gemini": 5,
+    "Open-source LLM": 10
   },
   "trending_functions": [
     {
-      "business_function": "Customer Support",
-      "count": 149
+      "business_function": "AI Agent Frameworks",
+      "count": 136
     },
     {
-      "business_function": "Education & Training",
-      "count": 76
+      "business_function": "Code Generation & DevOps",
+      "count": 54
     },
     {
-      "business_function": "Legal & Compliance",
-      "count": 60
+      "business_function": "Conversational AI",
+      "count": 30
     },
     {
-      "business_function": "Content & Marketing",
-      "count": 40
+      "business_function": "LLM Infrastructure",
+      "count": 24
     },
     {
-      "business_function": "HR & Recruiting",
-      "count": 28
+      "business_function": "RAG & Knowledge Retrieval",
+      "count": 17
     },
     {
-      "business_function": "Product Development",
-      "count": 27
+      "business_function": "Workflow Automation",
+      "count": 14
     },
     {
-      "business_function": "Sales & Outreach",
-      "count": 25
-    },
-    {
-      "business_function": "Finance & Analytics",
-      "count": 23
-    },
-    {
-      "business_function": "Healthcare & Clinical",
-      "count": 16
-    },
-    {
-      "business_function": "Retail Operations",
+      "business_function": "Multimodal & Document AI",
       "count": 12
+    },
+    {
+      "business_function": "Data & Analytics",
+      "count": 3
+    },
+    {
+      "business_function": "Web & Search Automation",
+      "count": 1
+    },
+    {
+      "business_function": "Content Generation",
+      "count": 1
     }
   ],
   "trending_industries": [
     {
-      "industry": "Customer Support",
-      "count": 64
-    },
-    {
-      "industry": "Financial Services",
-      "count": 61
-    },
-    {
       "industry": "SaaS & Developer Tools",
-      "count": 55
+      "count": 182
     },
     {
       "industry": "Education",
-      "count": 50
+      "count": 62
     },
     {
-      "industry": "Legal & Professional Services",
-      "count": 49
+      "industry": "Legal",
+      "count": 16
     },
     {
-      "industry": "Healthcare",
-      "count": 44
+      "industry": "Financial Services",
+      "count": 12
     },
     {
       "industry": "HR & Workforce",
-      "count": 43
+      "count": 9
     },
     {
-      "industry": "Media & Content",
-      "count": 42
+      "industry": "Sales & CRM",
+      "count": 4
     },
     {
-      "industry": "Retail & E-commerce",
-      "count": 25
+      "industry": "Marketing & Content",
+      "count": 4
     },
     {
-      "industry": "Real Estate",
-      "count": 21
+      "industry": "Healthcare",
+      "count": 3
     }
   ],
-  "total_repos_analyzed": 470,
+  "total_repos_analyzed": 292,
   "analysis_date": "2026-06-16",
-  "hot_insight": "Highest unexpected concentration: 64 repos targeting 'Customer Support' in 'Customer Support' -- real-world AI adoption is happening outside pure developer tooling."
+  "hot_insight": "Highest unexpected concentration: 25 repos targeting 'AI Agent Frameworks' in 'Education' -- real-world AI adoption is happening outside pure developer tooling."
 }

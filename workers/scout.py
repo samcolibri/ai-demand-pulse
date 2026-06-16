@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SCOUT v2 — targets 500+ repos across all major AI verticals"""
+"""SCOUT v3 — 5000+ star repos only. Real signal, no noise."""
 import os, json, time, urllib.request, urllib.parse
 from pathlib import Path
 
@@ -8,125 +8,122 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 HEADERS = {
     "Authorization": f"token {GITHUB_TOKEN}" if GITHUB_TOKEN else "",
     "Accept": "application/vnd.github.v3+json",
-    "User-Agent": "ai-demand-pulse-forge"
+    "User-Agent": "ai-demand-pulse"
 }
 
+# Broad queries — star filter does the quality work
 QUERIES = [
-    # Financial Services
-    ("ai finance compliance automation", "Financial Services"),
-    ("claude openai banking risk management", "Financial Services"),
-    ("llm invoice accounts payable", "Financial Services"),
-    ("ai fraud detection insurance claims", "Financial Services"),
-    ("openai fintech payments", "Financial Services"),
-    ("llm tax accounting automation", "Financial Services"),
-    ("ai trading crypto investment", "Financial Services"),
-    # Healthcare
-    ("ai healthcare clinical decision support", "Healthcare"),
-    ("llm medical diagnosis ehr", "Healthcare"),
-    ("claude health records patient", "Healthcare"),
-    ("openai radiology pathology imaging", "Healthcare"),
-    ("ai mental health therapy chatbot", "Healthcare"),
-    ("llm drug discovery pharma", "Healthcare"),
-    # Legal
-    ("ai legal contract review analysis", "Legal"),
-    ("llm lawyer document legal", "Legal"),
-    ("claude compliance contract ai", "Legal"),
-    ("openai legal research case", "Legal"),
-    ("ai paralegal automation", "Legal"),
-    # Education
-    ("ai education tutor personalized learning", "Education"),
-    ("llm student teacher grading", "Education"),
-    ("openai coursework curriculum", "Education"),
-    ("ai homework quiz generator", "Education"),
-    ("claude tutoring adaptive", "Education"),
-    # Sales & CRM
-    ("ai sales outreach personalization crm", "Sales"),
-    ("claude sdr email sequence", "Sales"),
-    ("llm lead generation pipeline sales", "Sales"),
-    ("openai sales copilot hubspot", "Sales"),
-    # Customer Support
-    ("ai customer support helpdesk chatbot", "Customer Support"),
-    ("llm ticket triage support automation", "Customer Support"),
-    ("claude customer service agent", "Customer Support"),
-    ("openai support whatsapp telegram bot", "Customer Support"),
-    ("ai call center voice agent", "Customer Support"),
-    # HR & Recruiting
-    ("ai recruiting resume screening ats", "HR"),
-    ("llm hr onboarding employee", "HR"),
-    ("openai job description interview", "HR"),
-    ("ai talent acquisition workforce", "HR"),
-    # Real Estate
-    ("ai real estate property listing", "Real Estate"),
-    ("llm mortgage property valuation", "Real Estate"),
-    ("openai real estate agent assistant", "Real Estate"),
-    # Retail & E-commerce
-    ("ai ecommerce product recommendation", "Retail"),
-    ("llm shopping assistant retail", "Retail"),
-    ("openai inventory pricing retail", "Retail"),
-    # Media & Content
-    ("ai content creation marketing copy", "Media"),
-    ("llm social media post generator", "Media"),
-    ("claude copywriting content", "Media"),
-    # DevTools (keep some)
-    ("claude code agent developer tools", "DevTools"),
-    ("codex automation workflow", "DevTools"),
-    ("gemini developer api assistant", "DevTools"),
+    # Core AI/LLM frameworks (catch the giants)
+    ("stars:>5000 topic:llm",                           "AI Infrastructure"),
+    ("stars:>5000 topic:langchain",                     "AI Infrastructure"),
+    ("stars:>5000 topic:openai",                        "AI Infrastructure"),
+    ("stars:>5000 topic:claude",                        "AI Infrastructure"),
+    ("stars:>5000 topic:gemini",                        "AI Infrastructure"),
+    ("stars:>5000 topic:ai-agent",                      "AI Infrastructure"),
+    ("stars:>5000 topic:rag",                           "AI Infrastructure"),
+    ("stars:>5000 topic:chatbot",                       "Customer Support"),
+    ("stars:>5000 topic:llm-agent",                     "AI Infrastructure"),
+    ("stars:>5000 topic:autonomous-agent",              "AI Infrastructure"),
+    # Vertical: Finance
+    ("stars:>5000 finance ai trading",                  "Financial Services"),
+    ("stars:>5000 fintech llm",                         "Financial Services"),
+    ("stars:>5000 quant trading ai",                    "Financial Services"),
+    ("stars:>5000 fraud detection machine learning",    "Financial Services"),
+    # Vertical: Healthcare
+    ("stars:>5000 healthcare ai",                       "Healthcare"),
+    ("stars:>5000 medical llm",                         "Healthcare"),
+    ("stars:>5000 clinical ai nlp",                     "Healthcare"),
+    ("stars:>5000 drug discovery ai",                   "Healthcare"),
+    # Vertical: Legal
+    ("stars:>5000 legal ai nlp",                        "Legal"),
+    ("stars:>5000 contract analysis ai",                "Legal"),
+    ("stars:>5000 compliance automation ai",            "Legal"),
+    # Vertical: Education
+    ("stars:>5000 education ai tutor",                  "Education"),
+    ("stars:>5000 learning llm",                        "Education"),
+    ("stars:>5000 ai teaching coding",                  "Education"),
+    # Vertical: Sales & CRM
+    ("stars:>5000 sales ai crm",                        "Sales"),
+    ("stars:>5000 outreach email ai",                   "Sales"),
+    # Vertical: Customer Support
+    ("stars:>5000 customer service ai",                 "Customer Support"),
+    ("stars:>5000 support chatbot llm",                 "Customer Support"),
+    # Vertical: HR
+    ("stars:>5000 recruiting ai resume",                "HR"),
+    ("stars:>5000 hr automation ai",                    "HR"),
+    # Vertical: Coding / DevTools
+    ("stars:>5000 code generation ai",                  "DevTools"),
+    ("stars:>5000 ai coding assistant",                 "DevTools"),
+    ("stars:>5000 developer tools llm",                 "DevTools"),
+    # Vertical: Data & Analytics
+    ("stars:>5000 data analysis ai",                    "Data & Analytics"),
+    ("stars:>5000 sql ai natural language",             "Data & Analytics"),
+    # Vertical: Content / Marketing
+    ("stars:>5000 content generation ai",               "Content"),
+    ("stars:>5000 marketing ai copywriting",            "Content"),
+    # General high-star AI
+    ("stars:>5000 topic:artificial-intelligence",       "AI Infrastructure"),
+    ("stars:>5000 topic:machine-learning",              "AI Infrastructure"),
+    ("stars:>5000 topic:generative-ai",                 "AI Infrastructure"),
+    ("stars:>5000 topic:gpt",                           "AI Infrastructure"),
+    ("stars:>10000 ai agent workflow",                  "AI Infrastructure"),
+    ("stars:>10000 ai automation",                      "AI Infrastructure"),
 ]
 
-def search_github(query, per_page=20):
-    encoded = urllib.parse.quote(query + " pushed:>2026-03-01")
-    url = f"https://api.github.com/search/repositories?q={encoded}&sort=updated&per_page={per_page}"
+def search(q, per_page=30):
+    url = "https://api.github.com/search/repositories?q=" + urllib.parse.quote(q) + f"&sort=stars&order=desc&per_page={per_page}"
     try:
         req = urllib.request.Request(url, headers=HEADERS)
-        with urllib.request.urlopen(req, timeout=10) as r:
-            return json.loads(r.read()).get("items", [])
+        with urllib.request.urlopen(req, timeout=12) as r:
+            data = json.loads(r.read())
+            # Handle rate limit message
+            if "message" in data:
+                print(f"    API msg: {data['message'][:80]}")
+                return []
+            return data.get("items", [])
     except Exception as e:
-        print(f"  [SCOUT] failed: {query[:40]} — {e}")
+        print(f"    error: {e}")
         return []
-
-def get_readme(full_name):
-    try:
-        req = urllib.request.Request(
-            f"https://api.github.com/repos/{full_name}/readme",
-            headers=HEADERS
-        )
-        with urllib.request.urlopen(req, timeout=5) as r:
-            import base64
-            content = base64.b64decode(json.loads(r.read()).get("content","")).decode("utf-8", errors="ignore")
-            return content[:500].strip()
-    except:
-        return ""
 
 def main():
     DATA_DIR.mkdir(exist_ok=True)
-    seen_ids = set()
+    seen = set()
     repos = []
-    for i, (query, hint) in enumerate(QUERIES):
-        print(f"  [{i+1}/{len(QUERIES)}] {query[:50]}")
-        items = search_github(query, per_page=20)
+    for i, (q, hint) in enumerate(QUERIES):
+        print(f"  [{i+1}/{len(QUERIES)}] {q}")
+        items = search(q, per_page=30)
         new = 0
         for item in items:
-            if item["id"] not in seen_ids:
-                seen_ids.add(item["id"])
-                readme = get_readme(item["full_name"])
-                repos.append({
-                    "id": item["id"],
-                    "full_name": item["full_name"],
-                    "name": item["full_name"].split("/")[-1],
-                    "description": item.get("description") or "",
-                    "topics": item.get("topics", []),
-                    "language": item.get("language", ""),
-                    "stars": item.get("stargazers_count", 0),
-                    "pushed_at": item.get("pushed_at", ""),
-                    "html_url": item.get("html_url", ""),
-                    "readme_snippet": readme,
-                    "hint_industry": hint,
-                })
-                new += 1
-        print(f"     +{new} new (total: {len(repos)})")
-        time.sleep(1.5)
+            if item["id"] in seen:
+                continue
+            stars = item.get("stargazers_count", 0)
+            if stars < 5000:
+                continue
+            seen.add(item["id"])
+            repos.append({
+                "id": item["id"],
+                "full_name": item["full_name"],
+                "name": item["full_name"].split("/")[-1],
+                "description": item.get("description") or "",
+                "topics": item.get("topics", []),
+                "language": item.get("language", ""),
+                "stars": stars,
+                "forks": item.get("forks_count", 0),
+                "pushed_at": item.get("pushed_at", "")[:10],
+                "html_url": item["html_url"],
+                "hint_industry": hint,
+            })
+            new += 1
+        print(f"     +{new} new (total: {len(repos)}, all 5k+ stars)")
+        time.sleep(1.2)  # respect rate limit
+
+    # Sort by stars descending
+    repos.sort(key=lambda r: r["stars"], reverse=True)
     (DATA_DIR / "repos_raw.json").write_text(json.dumps(repos, indent=2))
-    print(f"\n[SCOUT] Done. {len(repos)} repos saved.")
+    print(f"\n[SCOUT] {len(repos)} repos with 5000+ stars saved.")
+    print(f"Top 5 by stars:")
+    for r in repos[:5]:
+        print(f"  {r['stars']:>7,} ⭐  {r['full_name']}")
 
 if __name__ == "__main__":
     main()
