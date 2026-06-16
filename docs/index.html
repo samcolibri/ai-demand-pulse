@@ -5,358 +5,495 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Demand Pulse — June 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #050810;
-    --surface: #0d1117;
-    --border: #21262d;
-    --hot: #ef4444;
-    --warm: #f59e0b;
-    --cool: #3b82f6;
-    --green: #10b981;
-    --text: #e6edf3;
-    --muted: #7d8590;
-    --font: 'Inter', system-ui, sans-serif;
-    --mono: 'JetBrains Mono', monospace;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.6; }
+:root{--bg:#050810;--s:#0d1117;--b:#21262d;--hot:#ef4444;--warm:#f59e0b;--cool:#3b82f6;--green:#10b981;--purple:#8b5cf6;--text:#e6edf3;--muted:#7d8590;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6}
+a{color:var(--cool);text-decoration:none}a:hover{text-decoration:underline}
+nav{background:var(--s);border-bottom:1px solid var(--b);padding:12px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.brand{font-weight:700;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;background:var(--hot);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.nav-r{display:flex;gap:16px;font-size:.8rem;color:var(--muted)}
+.nav-r a{color:var(--cool)}
 
-  /* NAV */
-  nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-  .nav-brand { font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-  .pulse-dot { width: 8px; height: 8px; background: var(--hot); border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
-  .nav-right { display: flex; align-items: center; gap: 16px; font-size: .8rem; color: var(--muted); }
-  .nav-right a { color: var(--cool); text-decoration: none; }
+.hero{padding:72px 32px 56px;text-align:center;max-width:920px;margin:0 auto}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:18px}
+.g{background:linear-gradient(135deg,#ef4444,#f59e0b,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--muted);font-size:1rem;max-width:600px;margin:0 auto 28px}
+.stats{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.stat{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:12px 20px;text-align:center;min-width:120px}
+.stat-n{font-size:1.8rem;font-weight:800}
+.stat-l{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
 
-  /* HERO */
-  .hero { padding: 80px 32px 60px; text-align: center; max-width: 900px; margin: 0 auto; }
-  .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
-  .gradient-text { background: linear-gradient(135deg, #ef4444, #f59e0b, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .hero p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px; }
-  .stats-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
-  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 20px; text-align: center; }
-  .stat-n { font-size: 1.6rem; font-weight: 800; color: var(--text); }
-  .stat-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+.sec{max-width:1300px;margin:0 auto;padding:0 32px 56px}
+.sh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--b)}
+.st{font-size:.85rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+.ss{font-size:.78rem;color:var(--muted)}
 
-  /* SECTIONS */
-  .section { max-width: 1200px; margin: 0 auto; padding: 0 32px 60px; }
-  .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
-  .section-title { font-size: 1rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
-  .section-sub { font-size: .8rem; color: var(--muted); }
+/* DEMAND CHART — horizontal bars */
+.demand-chart{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.dc-row{display:grid;grid-template-columns:200px 1fr 50px;align-items:center;gap:12px}
+.dc-label{font-size:.8rem;text-align:right;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-bar-wrap{height:28px;background:var(--b);border-radius:4px;overflow:hidden;position:relative}
+.dc-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding:0 8px;font-size:.72rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;transition:width 1.2s ease}
+.dc-n{font-size:.85rem;font-weight:700;color:var(--text)}
+.chart-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:.75rem;color:var(--muted)}
+.legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px}
 
-  /* HEATMAP */
-  .heatmap-wrap { overflow-x: auto; margin-bottom: 8px; }
-  .heatmap-table { width: 100%; border-collapse: collapse; font-size: .75rem; }
-  .heatmap-table th { padding: 8px 10px; color: var(--muted); font-weight: 600; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--border); }
-  .heatmap-table th:first-child { min-width: 180px; }
-  .heatmap-table td { padding: 6px 10px; text-align: center; border: 1px solid #0d1117; transition: transform .1s; cursor: default; border-radius: 3px; }
-  .heatmap-table td:first-child { text-align: left; color: var(--muted); font-size: .72rem; padding-left: 0; border: none; background: none; }
-  .heatmap-table td:hover { transform: scale(1.05); z-index: 10; position: relative; }
-  .cell-0  { background: transparent; color: transparent; }
-  .cell-1  { background: #1e2d4a; color: #93c5fd; }
-  .cell-2  { background: #1e3a2e; color: #6ee7b7; }
-  .cell-3  { background: #3d2e0a; color: #fcd34d; }
-  .cell-4  { background: #4a1a0a; color: #fca5a5; }
-  .cell-5  { background: #5a0a0a; color: #fca5a5; font-weight: 700; }
-  .heat-legend { display: flex; align-items: center; gap: 6px; font-size: .72rem; color: var(--muted); margin-top: 12px; }
-  .heat-swatch { width: 16px; height: 16px; border-radius: 3px; }
+/* HEATMAP */
+.hm-wrap{overflow-x:auto}
+table.hm{border-collapse:collapse;font-size:.72rem;min-width:900px;width:100%}
+.hm th{padding:6px 8px;color:var(--muted);font-weight:600;white-space:nowrap;border-bottom:1px solid var(--b);text-align:center}
+.hm th:first-child{text-align:left;min-width:180px}
+.hm td{padding:5px 6px;text-align:center;border:1px solid var(--bg);border-radius:3px;cursor:default;transition:transform .1s}
+.hm td:first-child{text-align:left;color:var(--muted);border:none;background:none;padding-left:0}
+.hm td:hover{transform:scale(1.15);z-index:5;position:relative}
+.c0{background:transparent;color:transparent}
+.c1{background:#1a2744;color:#93c5fd}
+.c2{background:#1a3a2a;color:#6ee7b7}
+.c3{background:#3d2e0a;color:#fcd34d}
+.c4{background:#4a1a0a;color:#fca5a5}
+.c5{background:#5a0a0a;color:#f87171;font-weight:700}
+.hm-legend{display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--muted);margin-top:10px}
+.ls{width:16px;height:16px;border-radius:3px;display:inline-block}
 
-  /* TOP CLUSTERS */
-  .clusters { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; margin-bottom: 32px; }
-  .cluster-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
-  .cluster-rank { font-size: .65rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .cluster-label { font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
-  .cluster-industry { font-size: .78rem; color: var(--muted); margin-bottom: 12px; }
-  .cluster-bar { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 12px; overflow: hidden; }
-  .cluster-fill { height: 100%; background: linear-gradient(90deg, var(--hot), var(--warm)); border-radius: 2px; }
-  .cluster-repos { list-style: none; }
-  .cluster-repos li { font-size: .75rem; padding: 3px 0; border-top: 1px solid var(--border); }
-  .cluster-repos li a { color: var(--cool); text-decoration: none; font-family: var(--mono); }
-  .cluster-repos li a:hover { text-decoration: underline; }
-  .cluster-count { font-size: 1.4rem; font-weight: 800; color: var(--hot); }
+/* TOP CLUSTERS */
+.clusters{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.cc{background:var(--s);border:1px solid var(--b);border-radius:12px;padding:18px}
+.cc-rank{font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.cc-n{font-size:1.6rem;font-weight:800;color:var(--hot)}
+.cc-fn{font-size:.95rem;font-weight:700;margin-bottom:3px}
+.cc-ind{font-size:.78rem;color:var(--muted);margin-bottom:10px}
+.cc-bar{height:3px;background:var(--b);border-radius:2px;margin-bottom:10px}
+.cc-fill{height:100%;background:linear-gradient(90deg,var(--hot),var(--warm));border-radius:2px}
+.cc-repos li{font-size:.73rem;padding:3px 0;border-top:1px solid var(--b);list-style:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-repos li a{color:var(--cool);font-family:var(--mono)}
 
-  /* TOOL BARS */
-  .tool-bars { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
-  .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-  .tool-name { font-size: .8rem; font-weight: 700; margin-bottom: 8px; }
-  .tool-bar-wrap { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
-  .tool-bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
-  .tool-count { font-size: 1.6rem; font-weight: 800; margin-top: 8px; }
-  .tool-pct { font-size: .75rem; color: var(--muted); }
+/* TOOL BARS */
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.tc{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:16px}
+.tc-name{font-size:.8rem;font-weight:700;margin-bottom:8px}
+.tc-bar{height:8px;background:var(--b);border-radius:4px;overflow:hidden;margin-bottom:8px}
+.tc-fill{height:100%;border-radius:4px}
+.tc-n{font-size:1.6rem;font-weight:800}
+.tc-pct{font-size:.75rem;color:var(--muted)}
 
-  /* HOT INSIGHT */
-  .insight-card { background: #160505; border: 1px solid #7f1d1d; border-radius: 12px; padding: 24px; margin-bottom: 32px; }
-  .insight-label { font-size: .72rem; font-weight: 700; color: var(--hot); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
-  .insight-text { font-size: 1.05rem; font-weight: 600; line-height: 1.5; }
+/* INSIGHT */
+.insight{background:#160505;border:1px solid #7f1d1d;border-radius:12px;padding:22px;margin-bottom:0}
+.ins-l{font-size:.7rem;font-weight:700;color:var(--hot);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.ins-t{font-size:1rem;font-weight:600;line-height:1.5}
 
-  /* LIVE FEED */
-  .feed { list-style: none; }
-  .feed-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
-  .feed-item:last-child { border: none; }
-  .feed-badges { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; margin-top: 2px; }
-  .badge { font-size: .65rem; padding: 2px 7px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
-  .badge-blue { background: #1e3a5f; color: #93c5fd; }
-  .badge-green { background: #064e3b; color: #6ee7b7; }
-  .badge-amber { background: #78350f; color: #fcd34d; }
-  .feed-name a { font-size: .875rem; font-weight: 600; color: var(--text); text-decoration: none; font-family: var(--mono); }
-  .feed-name a:hover { color: var(--cool); }
-  .feed-desc { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+/* FULL REPO TABLE */
+.tbl-controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.tbl-controls input{background:var(--s);border:1px solid var(--b);border-radius:6px;padding:7px 12px;color:var(--text);font-size:.8rem;flex:1;min-width:200px}
+.tbl-controls select{background:var(--s);border:1px solid var(--b);border-radius:6px;padding:7px 12px;color:var(--text);font-size:.8rem}
+.tbl-info{font-size:.78rem;color:var(--muted);margin-left:auto}
+.tbl-wrap{overflow-x:auto}
+table.repos{width:100%;border-collapse:collapse;font-size:.78rem}
+.repos thead th{background:var(--s);padding:10px 12px;text-align:left;color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.8px;border-bottom:2px solid var(--b);cursor:pointer;white-space:nowrap;user-select:none}
+.repos thead th:hover{color:var(--text)}
+.repos thead th.sorted{color:var(--cool)}
+.repos tbody tr{border-bottom:1px solid var(--b)}
+.repos tbody tr:hover td{background:#0d1117}
+.repos tbody td{padding:9px 12px;vertical-align:middle}
+.repos td:first-child{font-family:var(--mono);font-size:.75rem;white-space:nowrap}
+.repos td:first-child a{color:var(--cool)}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.65rem;font-weight:600;white-space:nowrap}
+.b-blue{background:#1e3a5f;color:#93c5fd}
+.b-green{background:#064e3b;color:#6ee7b7}
+.b-amber{background:#78350f;color:#fcd34d}
+.b-red{background:#4a0e0e;color:#fca5a5}
+.b-purple{background:#2e1065;color:#c4b5fd}
+.b-gray{background:#1e293b;color:#94a3b8}
+.stars{color:var(--warm);font-weight:600}
+.pg{display:flex;gap:8px;justify-content:center;margin-top:16px;align-items:center}
+.pg button{background:var(--s);border:1px solid var(--b);border-radius:6px;padding:6px 12px;color:var(--text);cursor:pointer;font-size:.78rem}
+.pg button:hover{border-color:var(--cool);color:var(--cool)}
+.pg button.active{background:var(--cool);border-color:var(--cool);color:#fff}
+.pg-info{color:var(--muted);font-size:.78rem}
 
-  /* POLL CTA */
-  .cta-card { background: linear-gradient(135deg, #0d1117, #160b24); border: 1px solid #30185c; border-radius: 16px; padding: 32px; text-align: center; margin-bottom: 32px; }
-  .cta-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
-  .cta-sub { color: var(--muted); font-size: .9rem; margin-bottom: 20px; }
-  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; font-size: .875rem; font-weight: 600; text-decoration: none; transition: opacity .2s; }
-  .btn:hover { opacity: .85; }
-  .btn-primary { background: var(--cool); color: #fff; }
-  .btn-secondary { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
-  .btn-linkedin { background: #0077b5; color: #fff; }
+/* CTA */
+.cta{background:linear-gradient(135deg,#0d1117,#160b24);border:1px solid #30185c;border-radius:16px;padding:32px;text-align:center}
+.cta-t{font-size:1.3rem;font-weight:800;margin-bottom:8px}
+.cta-s{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:.875rem;font-weight:600;transition:opacity .2s;text-decoration:none}
+.btn:hover{opacity:.85;text-decoration:none}
+.btn-p{background:var(--cool);color:#fff}
+.btn-li{background:#0077b5;color:#fff}
+.btn-g{background:var(--s);border:1px solid var(--b);color:var(--text)}
 
-  /* LOADING */
-  .loading { text-align: center; padding: 80px 32px; color: var(--muted); }
-  .loading-spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--cool); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  footer { border-top: 1px solid var(--border); padding: 24px 32px; text-align: center; color: var(--muted); font-size: .8rem; }
-  footer a { color: var(--cool); text-decoration: none; }
+.loading{text-align:center;padding:80px;color:var(--muted)}
+.spin{width:36px;height:36px;border:3px solid var(--b);border-top-color:var(--cool);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+footer{border-top:1px solid var(--b);padding:20px 32px;text-align:center;color:var(--muted);font-size:.78rem}
+footer a{color:var(--cool)}
 </style>
 </head>
 <body>
-
 <nav>
-  <div class="nav-brand">
-    <span class="pulse-dot"></span>
-    AI Demand Pulse
-  </div>
-  <div class="nav-right">
-    <span id="nav-repos">loading...</span>
-    <span id="nav-updated">loading...</span>
+  <div class="brand"><span class="dot"></span>AI Demand Pulse</div>
+  <div class="nav-r">
+    <span id="nav-n">loading...</span>
+    <span id="nav-d">June 2026</span>
     <a href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">GitHub ↗</a>
   </div>
 </nav>
 
 <div class="hero">
-  <h1><span class="gradient-text">AI Demand Pulse</span></h1>
-  <p>Which industries and business functions are hungry for AI solutions in June 2026? Real GitHub repos. Real signals. Updated every 6 hours by FORGE agents.</p>
-  <div class="stats-row">
-    <div class="stat"><div class="stat-n" id="stat-repos">—</div><div class="stat-label">Repos Analyzed</div></div>
-    <div class="stat"><div class="stat-n" id="stat-clusters">10</div><div class="stat-label">Demand Clusters</div></div>
-    <div class="stat"><div class="stat-n" id="stat-date">—</div><div class="stat-label">Analysis Date</div></div>
-    <div class="stat"><div class="stat-n">6h</div><div class="stat-label">Update Cadence</div></div>
+  <h1><span class="g">AI Demand Pulse</span></h1>
+  <p>Which industries and business functions are hungry for AI in June 2026? <strong>Real GitHub repos. Real builders. Real signal.</strong> Updated every 6 hours by FORGE agents.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-n" id="s-repos">—</div><div class="stat-l">Repos Analyzed</div></div>
+    <div class="stat"><div class="stat-n" id="s-ind">11</div><div class="stat-l">Industries</div></div>
+    <div class="stat"><div class="stat-n" id="s-fn">12</div><div class="stat-l">Business Functions</div></div>
+    <div class="stat"><div class="stat-n">6h</div><div class="stat-l">Update Cadence</div></div>
   </div>
 </div>
 
-<div id="main-content">
-  <div class="loading">
-    <div class="loading-spinner"></div>
-    <p>FORGE agents loading demand data...</p>
-  </div>
+<div id="app">
+  <div class="loading"><div class="spin"></div><p>FORGE agents loading demand data...</p></div>
 </div>
 
 <footer>
-  <p>Powered by <strong>FORGE × Hephaestus × agmsg</strong> · Open source ·
+  Powered by <strong>FORGE × Hephaestus × agmsg</strong> ·
   <a href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">samcolibri/ai-demand-pulse</a> ·
-  <a href="https://github.com/samcolibri/forge" target="_blank">samcolibri/forge</a></p>
+  <a href="https://github.com/samcolibri/forge" target="_blank">samcolibri/forge</a> ·
+  <a href="https://samcolibri.github.io/forge/" target="_blank">FORGE dashboard</a>
 </footer>
 
 <script>
-const BIZ_FUNCTIONS = [
-  'Product Development','DevOps & Infrastructure','Operations & Logistics',
-  'Data & Analytics','Content & Marketing','Sales & Outreach',
-  'IT & Security','Education & Training','Research & Science',
-  'HR & Recruiting','Legal & Compliance','Customer Support'
-];
-const INDUSTRIES = [
-  'SaaS & Developer Tools','Financial Services','Healthcare',
-  'Education','Legal & Professional Services','Retail & E-commerce',
-  'Media & Entertainment','Manufacturing & Industrial',
-  'Government & Public Sector','HR & Workforce'
-];
+// ── constants ──────────────────────────────────────────────────────────────
+const BIZ = ['Customer Support','Legal & Compliance','Education & Training',
+  'Content & Marketing','HR & Recruiting','Sales & Outreach','Finance & Analytics',
+  'Healthcare & Clinical','Product Development','Retail Operations',
+  'Operations & Logistics','DevOps & Infrastructure','Data & Analytics'];
+const IND = ['Customer Support','Financial Services','SaaS & Developer Tools',
+  'Education','Legal & Professional Services','Healthcare','HR & Workforce',
+  'Media & Content','Retail & E-commerce','Real Estate','Sales & Marketing'];
+const TOOL_COLORS = {claude:'#da7756',openai:'#10b981',gemini:'#3b82f6',
+  'open-source':'#8b5cf6',codex:'#f59e0b',other:'#4b5563'};
+const INDUSTRY_COLORS = ['#ef4444','#f59e0b','#3b82f6','#10b981','#8b5cf6',
+  '#06b6d4','#f97316','#84cc16','#e879f9','#22d3ee','#a78bfa'];
 
-function heatClass(count) {
-  if (count === 0) return 'cell-0';
-  if (count <= 2) return 'cell-1';
-  if (count <= 5) return 'cell-2';
-  if (count <= 12) return 'cell-3';
-  if (count <= 30) return 'cell-4';
-  return 'cell-5';
-}
+function hc(n){if(!n)return'c0';if(n<=2)return'c1';if(n<=5)return'c2';if(n<=15)return'c3';if(n<=35)return'c4';return'c5';}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function numFmt(n){return n>=1000?(n/1000).toFixed(1)+'k':n;}
 
-function renderDashboard(data, classified) {
-  document.getElementById('stat-repos').textContent = data.total_repos_analyzed || classified.length;
-  document.getElementById('stat-date').textContent = data.analysis_date || 'June 2026';
-  document.getElementById('nav-repos').textContent = (data.total_repos_analyzed || classified.length) + ' repos';
-  document.getElementById('nav-updated').textContent = 'Updated ' + (data.analysis_date || 'June 2026');
+// ── state ──────────────────────────────────────────────────────────────────
+let allRepos=[], filteredRepos=[], sortKey='stars', sortAsc=false, page=1;
+const PAGE_SIZE=50;
 
-  // Build heatmap matrix from classified repos
-  const matrix = {};
-  INDUSTRIES.forEach(ind => { matrix[ind] = {}; BIZ_FUNCTIONS.forEach(fn => { matrix[ind][fn] = {count:0,repos:[]}; }); });
+// ── render ─────────────────────────────────────────────────────────────────
+function render(data, classified){
+  document.getElementById('s-repos').textContent = classified.length;
+  document.getElementById('nav-n').textContent = classified.length + ' repos';
+  document.getElementById('nav-d').textContent = data.analysis_date || 'June 2026';
+  allRepos = classified;
+  filteredRepos = [...classified];
 
-  classified.forEach(repo => {
-    const ind = repo.industry || '';
-    const fn = repo.business_function || '';
-    if (matrix[ind] && matrix[ind][fn]) {
-      matrix[ind][fn].count++;
-      if (matrix[ind][fn].repos.length < 3) matrix[ind][fn].repos.push(repo);
-    }
+  // demand chart data
+  const fnCount={};
+  classified.forEach(r=>{fnCount[r.business_function]=(fnCount[r.business_function]||0)+1;});
+  const fnSorted=Object.entries(fnCount).sort((a,b)=>b[1]-a[1]);
+  const maxFn=fnSorted[0]?.[1]||1;
+
+  // industry chart data
+  const indCount={};
+  classified.forEach(r=>{indCount[r.industry]=(indCount[r.industry]||0)+1;});
+  const indSorted=Object.entries(indCount).sort((a,b)=>b[1]-a[1]);
+
+  // heatmap matrix
+  const mat={};
+  IND.forEach(i=>{mat[i]={};BIZ.forEach(b=>{mat[i][b]={count:0,repos:[]};});});
+  classified.forEach(r=>{
+    const i=r.industry, b=r.business_function;
+    if(mat[i]&&mat[i][b]){mat[i][b].count++;if(mat[i][b].repos.length<3)mat[i][b].repos.push(r);}
   });
 
-  const maxCount = Math.max(...INDUSTRIES.flatMap(ind => BIZ_FUNCTIONS.map(fn => matrix[ind][fn].count)));
+  // top clusters
+  const tops=(data.top_clusters||[]).slice(0,9);
+  const maxC=tops[0]?.count||1;
 
-  // Build heatmap HTML
-  let hmHTML = '<div class="heatmap-wrap"><table class="heatmap-table"><thead><tr><th>Industry ↓ / Function →</th>';
-  BIZ_FUNCTIONS.forEach(fn => { hmHTML += `<th title="${fn}">${fn.split(' ')[0]}</th>`; });
+  // tool counts
+  const tools=data.by_ai_tool||{};
+  const totalTools=Object.values(tools).reduce((a,b)=>a+b,0)||1;
+
+  document.getElementById('app').innerHTML = `
+<!-- DEMAND CHART - Business Functions -->
+<div class="sec">
+  <div class="sh"><span class="st">AI Demand by Business Function</span><span class="ss">Repos per function — ${classified.length} repos analyzed</span></div>
+  <div class="demand-chart" id="dc-fn"></div>
+</div>
+
+<!-- DEMAND CHART - Industries -->
+<div class="sec">
+  <div class="sh"><span class="st">AI Demand by Industry</span><span class="ss">Where vertical AI is being built right now</span></div>
+  <div class="demand-chart" id="dc-ind"></div>
+</div>
+
+<!-- HEATMAP -->
+<div class="sec">
+  <div class="sh"><span class="st">Demand Heatmap</span><span class="ss">Business function × industry intensity — hover for details</span></div>
+  <div class="hm-wrap" id="heatmap-wrap"></div>
+  <div class="hm-legend">
+    <span>Intensity:</span>
+    <span class="ls c1"></span>1–2
+    <span class="ls c2"></span>3–5
+    <span class="ls c3"></span>6–15
+    <span class="ls c4"></span>16–35
+    <span class="ls c5"></span>36+
+  </div>
+</div>
+
+<!-- TOP CLUSTERS -->
+<div class="sec">
+  <div class="sh"><span class="st">Top Demand Clusters</span><span class="ss">Highest concentration of active repos</span></div>
+  <div class="clusters" id="clusters"></div>
+</div>
+
+<!-- AI TOOLS -->
+<div class="sec">
+  <div class="sh"><span class="st">By AI Tool</span><span class="ss">Which AI tools builders are using</span></div>
+  <div class="tools" id="tools"></div>
+</div>
+
+<!-- HOT INSIGHT -->
+<div class="sec">
+  <div class="insight">
+    <div class="ins-l">🤯 Hot Insight — June 2026</div>
+    <div class="ins-t">${esc(data.hot_insight||'')}</div>
+  </div>
+</div>
+
+<!-- ALL REPOS TABLE -->
+<div class="sec" id="repo-sec">
+  <div class="sh"><span class="st">All ${classified.length} Repos Analyzed</span><span class="ss">Every repo — sortable, filterable, all links real</span></div>
+  <div class="tbl-controls">
+    <input type="text" id="search" placeholder="Search repo name, description, industry..." oninput="filterRepos()">
+    <select id="f-ind" onchange="filterRepos()"><option value="">All Industries</option>${IND.map(i=>`<option>${i}</option>`).join('')}</select>
+    <select id="f-biz" onchange="filterRepos()"><option value="">All Functions</option>${BIZ.map(b=>`<option>${b}</option>`).join('')}</select>
+    <select id="f-tool" onchange="filterRepos()"><option value="">All Tools</option>${Object.keys(TOOL_COLORS).map(t=>`<option>${t}</option>`).join('')}</select>
+    <span class="tbl-info" id="tbl-info"></span>
+  </div>
+  <div class="tbl-wrap">
+    <table class="repos">
+      <thead>
+        <tr>
+          <th onclick="sortRepos('full_name')">Repo</th>
+          <th onclick="sortRepos('description')">Description</th>
+          <th onclick="sortRepos('business_function')">Function</th>
+          <th onclick="sortRepos('industry')">Industry</th>
+          <th onclick="sortRepos('ai_tool')">Tool</th>
+          <th onclick="sortRepos('language')">Lang</th>
+          <th onclick="sortRepos('stars')" class="sorted">⭐ Stars</th>
+          <th onclick="sortRepos('pushed_at')">Updated</th>
+        </tr>
+      </thead>
+      <tbody id="repo-body"></tbody>
+    </table>
+  </div>
+  <div class="pg" id="pg"></div>
+</div>
+
+<!-- CTA -->
+<div class="sec">
+  <div class="cta">
+    <div class="cta-t">What AI problem should we solve next?</div>
+    <div class="cta-s">Vote in the GitHub Discussions poll · Share on LinkedIn · Star the repo</div>
+    <div class="btns">
+      <a class="btn btn-p" href="https://github.com/samcolibri/ai-demand-pulse/discussions" target="_blank">Vote in poll</a>
+      <a class="btn btn-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsamcolibri.github.io%2Fai-demand-pulse%2F" target="_blank">Share on LinkedIn</a>
+      <a class="btn btn-g" href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">⭐ Star on GitHub</a>
+    </div>
+  </div>
+</div>
+`;
+
+  // Render demand charts
+  const dcFn = document.getElementById('dc-fn');
+  fnSorted.forEach(([fn, cnt], i)=>{
+    const pct = Math.round(cnt/maxFn*100);
+    const color = INDUSTRY_COLORS[i%INDUSTRY_COLORS.length];
+    dcFn.innerHTML += `<div class="dc-row">
+      <div class="dc-label" title="${esc(fn)}">${esc(fn)}</div>
+      <div class="dc-bar-wrap"><div class="dc-bar" style="width:${pct}%;background:${color}">${cnt >= 8 ? cnt+' repos' : ''}</div></div>
+      <div class="dc-n">${cnt}</div>
+    </div>`;
+  });
+
+  const dcInd = document.getElementById('dc-ind');
+  const maxInd = indSorted[0]?.[1]||1;
+  indSorted.forEach(([ind, cnt], i)=>{
+    const pct = Math.round(cnt/maxInd*100);
+    const color = INDUSTRY_COLORS[i%INDUSTRY_COLORS.length];
+    dcInd.innerHTML += `<div class="dc-row">
+      <div class="dc-label" title="${esc(ind)}">${esc(ind)}</div>
+      <div class="dc-bar-wrap"><div class="dc-bar" style="width:${pct}%;background:${color}">${cnt >= 8 ? cnt+' repos' : ''}</div></div>
+      <div class="dc-n">${cnt}</div>
+    </div>`;
+  });
+
+  // Render heatmap
+  let hmHTML = '<table class="hm"><thead><tr><th>Industry ↓ / Function →</th>';
+  BIZ.forEach(b=>{ hmHTML += `<th title="${esc(b)}">${esc(b.split(' ')[0])}</th>`; });
   hmHTML += '</tr></thead><tbody>';
-  INDUSTRIES.forEach(ind => {
-    hmHTML += `<tr><td>${ind}</td>`;
-    BIZ_FUNCTIONS.forEach(fn => {
-      const cell = matrix[ind][fn];
-      const cls = heatClass(cell.count);
-      const tooltip = cell.count > 0
-        ? `${cell.count} repos\n${cell.repos.map(r=>r.full_name||r.name||'').join(', ')}`
+  IND.forEach(ind=>{
+    hmHTML += `<tr><td>${esc(ind)}</td>`;
+    BIZ.forEach(b=>{
+      const cell = mat[ind][b]||{count:0,repos:[]};
+      const tt = cell.count > 0
+        ? `${cell.count} repos: ${cell.repos.map(r=>r.full_name||r.name||'').join(', ')}`
         : '0 repos';
-      hmHTML += `<td class="${cls}" title="${tooltip}">${cell.count > 0 ? cell.count : ''}</td>`;
+      hmHTML += `<td class="${hc(cell.count)}" title="${esc(tt)}">${cell.count||''}</td>`;
     });
     hmHTML += '</tr>';
   });
-  hmHTML += '</tbody></table></div>';
-  hmHTML += '<div class="heat-legend"><span>Intensity:</span><span class="heat-swatch cell-1"></span>1-2<span class="heat-swatch cell-2"></span>3-5<span class="heat-swatch cell-3"></span>6-12<span class="heat-swatch cell-4"></span>13-30<span class="heat-swatch cell-5"></span>30+</div>';
+  hmHTML += '</tbody></table>';
+  document.getElementById('heatmap-wrap').innerHTML = hmHTML;
 
-  // Top clusters
-  const top = (data.top_clusters || []).slice(0, 10);
-  const maxRepos = top.length > 0 ? top[0].count : 1;
-  let clustersHTML = '<div class="clusters">';
-  const medals = ['🔥','🔥','🔥','4','5','6','7','8','9','10'];
-  top.forEach((c, i) => {
-    const repos = c.repos || [];
-    let repoLinks = '';
-    repos.slice(0,3).forEach(r => {
-      const name = r.name || (typeof r === 'string' ? r : '');
-      const url = r.url || r.html_url || `https://github.com/${name}`;
-      const display = name.split('/').pop() || name;
-      if (name) repoLinks += `<li><a href="${url}" target="_blank">${display}</a></li>`;
-    });
-    clustersHTML += `
-      <div class="cluster-card">
-        <div class="cluster-rank">${medals[i] || i+1}  #${i+1} demand cluster</div>
-        <div class="cluster-count">${c.count} repos</div>
-        <div class="cluster-label">${c.business_function}</div>
-        <div class="cluster-industry">${c.industry}</div>
-        <div class="cluster-bar"><div class="cluster-fill" style="width:${Math.round(c.count/maxRepos*100)}%"></div></div>
-        ${repoLinks ? `<ul class="cluster-repos">${repoLinks}</ul>` : ''}
-      </div>`;
-  });
-  clustersHTML += '</div>';
-
-  // Tool breakdown
-  const tools = data.by_ai_tool || {};
-  const totalTools = Object.values(tools).reduce((a,b)=>a+b,0) || 1;
-  const toolColors = {claude:'#da7756',codex:'#10b981',gemini:'#3b82f6',other:'#7d8590'};
-  let toolsHTML = '<div class="tool-bars">';
-  Object.entries(tools).forEach(([tool, count]) => {
-    const pct = Math.round(count/totalTools*100);
-    const color = toolColors[tool] || '#7d8590';
-    toolsHTML += `<div class="tool-card">
-      <div class="tool-name">${tool.charAt(0).toUpperCase()+tool.slice(1)}</div>
-      <div class="tool-bar-wrap"><div class="tool-bar-fill" style="width:${pct}%;background:${color}"></div></div>
-      <div class="tool-count" style="color:${color}">${count}</div>
-      <div class="tool-pct">${pct}% of repos</div>
+  // Render top clusters
+  const medals = ['🔥','🔥','🔥','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣'];
+  let cHTML = '';
+  tops.forEach((c, i)=>{
+    const repos = c.repos||[];
+    let rl = repos.slice(0,3).map(r=>{
+      const url = r.url||r.html_url||`https://github.com/${r.name}`;
+      const n = (r.name||'').split('/').pop()||r.name||'';
+      return n ? `<li><a href="${esc(url)}" target="_blank">${esc(n)}</a></li>` : '';
+    }).join('');
+    cHTML += `<div class="cc">
+      <div class="cc-rank">${medals[i]||''} #${i+1} demand cluster</div>
+      <div class="cc-n">${c.count}</div>
+      <div class="cc-fn">${esc(c.business_function)}</div>
+      <div class="cc-ind">${esc(c.industry)}</div>
+      <div class="cc-bar"><div class="cc-fill" style="width:${Math.round(c.count/maxC*100)}%"></div></div>
+      ${rl?`<ul class="cc-repos">${rl}</ul>`:''}
     </div>`;
   });
-  toolsHTML += '</div>';
+  document.getElementById('clusters').innerHTML = cHTML;
 
-  // Hot insight
-  const insightHTML = `<div class="insight-card">
-    <div class="insight-label">🤯 Hot Insight — June 2026</div>
-    <div class="insight-text">${data.hot_insight || 'Analysis running...'}</div>
-  </div>`;
-
-  // Live feed — real repos only
-  const feed = classified.filter(r => r.html_url || r.url).slice(0,15);
-  let feedHTML = '<ul class="feed">';
-  feed.forEach(r => {
-    const url = r.html_url || r.url || '#';
-    const name = r.full_name || r.name || url.replace('https://github.com/','');
-    const desc = r.use_case_summary || r.description || '';
-    const fn = r.business_function || '';
-    const ind = r.industry || '';
-    const tool = r.ai_tool || '';
-    feedHTML += `<li class="feed-item">
-      <div>
-        <div class="feed-name"><a href="${url}" target="_blank">${name}</a></div>
-        ${desc ? `<div class="feed-desc">${desc.slice(0,100)}</div>` : ''}
-      </div>
-      <div class="feed-badges">
-        ${fn ? `<span class="badge badge-blue">${fn}</span>` : ''}
-        ${ind ? `<span class="badge badge-green">${ind.split(' ')[0]}</span>` : ''}
-        ${tool ? `<span class="badge badge-amber">${tool}</span>` : ''}
-      </div>
-    </li>`;
+  // Render tools
+  let tHTML = '';
+  Object.entries(tools).sort((a,b)=>b[1]-a[1]).forEach(([tool, cnt])=>{
+    const pct = Math.round(cnt/totalTools*100);
+    const color = TOOL_COLORS[tool]||'#4b5563';
+    tHTML += `<div class="tc">
+      <div class="tc-name">${esc(tool.charAt(0).toUpperCase()+tool.slice(1))}</div>
+      <div class="tc-bar"><div class="tc-fill" style="width:${pct}%;background:${color}"></div></div>
+      <div class="tc-n" style="color:${color}">${cnt}</div>
+      <div class="tc-pct">${pct}% of repos</div>
+    </div>`;
   });
-  feedHTML += '</ul>';
+  document.getElementById('tools').innerHTML = tHTML;
 
-  // CTA
-  const liMsg = encodeURIComponent('🔥 AI agents analyzed 500+ GitHub repos to map where AI demand is hottest in 2026. Live dashboard: https://samcolibri.github.io/ai-demand-pulse/');
-  const ctaHTML = `<div class="cta-card">
-    <div class="cta-title">What AI business problem should we solve next?</div>
-    <div class="cta-sub">Vote in the GitHub Discussions poll · Your vote influences what FORGE agents build next</div>
-    <div class="cta-buttons">
-      <a class="btn btn-primary" href="https://github.com/samcolibri/ai-demand-pulse/discussions" target="_blank">Vote in the poll</a>
-      <a class="btn btn-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsamcolibri.github.io%2Fai-demand-pulse%2F&summary=${liMsg}" target="_blank">Share on LinkedIn</a>
-      <a class="btn btn-secondary" href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">⭐ Star on GitHub</a>
-    </div>
-  </div>`;
-
-  document.getElementById('main-content').innerHTML = `
-    <div class="section">
-      <div class="section-header"><span class="section-title">Demand Heatmap</span><span class="section-sub">Repos per business function × industry — hover cells for details</span></div>
-      ${hmHTML}
-    </div>
-    <div class="section">
-      <div class="section-header"><span class="section-title">Top Demand Clusters</span><span class="section-sub">Ranked by number of active GitHub repos</span></div>
-      ${clustersHTML}
-    </div>
-    <div class="section">
-      <div class="section-header"><span class="section-title">By AI Tool</span><span class="section-sub">Which AI tools are builders using?</span></div>
-      ${toolsHTML}
-    </div>
-    <div class="section">
-      ${insightHTML}
-    </div>
-    <div class="section">
-      <div class="section-header"><span class="section-title">Live Repo Feed</span><span class="section-sub">Most recently analyzed repos — all links verified real</span></div>
-      ${feedHTML}
-    </div>
-    <div class="section">
-      ${ctaHTML}
-    </div>
-  `;
+  // Render repo table
+  renderTable();
 }
 
-async function loadData() {
-  try {
-    const [r1, r2] = await Promise.all([
+function renderTable(){
+  const start=(page-1)*PAGE_SIZE, end=start+PAGE_SIZE;
+  const pageRepos=filteredRepos.slice(start,end);
+  document.getElementById('tbl-info').textContent = `Showing ${start+1}–${Math.min(end,filteredRepos.length)} of ${filteredRepos.length}`;
+  
+  const toolBadgeClass = t=>({claude:'b-red',openai:'b-green',gemini:'b-blue','open-source':'b-purple',codex:'b-amber',other:'b-gray'}[t]||'b-gray');
+
+  document.getElementById('repo-body').innerHTML = pageRepos.map(r=>{
+    const url = r.html_url||r.url||'#';
+    const full = r.full_name||r.name||url.replace('https://github.com/','');
+    const desc = (r.description||'').slice(0,80)+(r.description?.length>80?'…':'');
+    const lang = r.language||'';
+    const stars = r.stars||0;
+    const updated = (r.pushed_at||'').slice(0,10);
+    return `<tr>
+      <td><a href="${esc(url)}" target="_blank">${esc(full)}</a></td>
+      <td style="color:var(--muted)">${esc(desc)}</td>
+      <td><span class="badge b-blue">${esc(r.business_function||'')}</span></td>
+      <td><span class="badge b-green">${esc(r.industry||'')}</span></td>
+      <td><span class="badge ${toolBadgeClass(r.ai_tool)}">${esc(r.ai_tool||'')}</span></td>
+      <td style="color:var(--muted)">${esc(lang)}</td>
+      <td class="stars">${stars>0?'⭐ '+numFmt(stars):''}</td>
+      <td style="color:var(--muted)">${esc(updated)}</td>
+    </tr>`;
+  }).join('');
+
+  // Pagination
+  const totalPages=Math.ceil(filteredRepos.length/PAGE_SIZE);
+  let pgHTML='';
+  if(totalPages>1){
+    pgHTML+=`<button onclick="goPage(${page-1})" ${page===1?'disabled':''}>← Prev</button>`;
+    const start=Math.max(1,page-2), end=Math.min(totalPages,page+2);
+    if(start>1) pgHTML+=`<button onclick="goPage(1)">1</button>${start>2?'<span class="pg-info">…</span>':''}`;
+    for(let i=start;i<=end;i++) pgHTML+=`<button onclick="goPage(${i})" class="${i===page?'active':''}">${i}</button>`;
+    if(end<totalPages) pgHTML+=`${end<totalPages-1?'<span class="pg-info">…</span>':''}<button onclick="goPage(${totalPages})">${totalPages}</button>`;
+    pgHTML+=`<button onclick="goPage(${page+1})" ${page===totalPages?'disabled':''}>Next →</button>`;
+    pgHTML+=`<span class="pg-info">Page ${page} of ${totalPages}</span>`;
+  }
+  document.getElementById('pg').innerHTML=pgHTML;
+}
+
+function filterRepos(){
+  const q=(document.getElementById('search').value||'').toLowerCase();
+  const fi=document.getElementById('f-ind').value;
+  const fb=document.getElementById('f-biz').value;
+  const ft=document.getElementById('f-tool').value;
+  filteredRepos=allRepos.filter(r=>{
+    if(fi && r.industry!==fi) return false;
+    if(fb && r.business_function!==fb) return false;
+    if(ft && r.ai_tool!==ft) return false;
+    if(q){
+      const haystack=(r.full_name+' '+r.description+' '+r.industry+' '+r.business_function).toLowerCase();
+      if(!haystack.includes(q)) return false;
+    }
+    return true;
+  });
+  page=1;
+  renderTable();
+}
+
+function sortRepos(key){
+  if(sortKey===key){sortAsc=!sortAsc;}else{sortKey=key;sortAsc=false;}
+  document.querySelectorAll('.repos thead th').forEach(th=>th.classList.remove('sorted'));
+  filteredRepos.sort((a,b)=>{
+    let av=a[key]||'', bv=b[key]||'';
+    if(key==='stars'){av=+(a.stars||0);bv=+(b.stars||0);}
+    return sortAsc?(av<bv?-1:av>bv?1:0):(av>bv?-1:av<bv?1:0);
+  });
+  page=1;
+  renderTable();
+}
+
+function goPage(p){
+  const total=Math.ceil(filteredRepos.length/PAGE_SIZE);
+  if(p<1||p>total) return;
+  page=p;
+  renderTable();
+  document.getElementById('repo-sec').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── load data ──────────────────────────────────────────────────────────────
+async function init(){
+  try{
+    const [r1,r2]=await Promise.all([
       fetch('./data/demand_analysis.json'),
       fetch('./data/repos_classified.json')
     ]);
-    if (!r1.ok || !r2.ok) throw new Error('Data files not found');
-    const [analysis, classified] = await Promise.all([r1.json(), r2.json()]);
-    renderDashboard(analysis, classified);
-  } catch (e) {
-    document.getElementById('main-content').innerHTML = `
+    if(!r1.ok||!r2.ok) throw new Error('data not ready');
+    const [analysis,classified]=await Promise.all([r1.json(),r2.json()]);
+    render(analysis,classified);
+  }catch(e){
+    document.getElementById('app').innerHTML=`
       <div class="loading">
-        <p>⏳ FORGE agents are running the first analysis...</p>
-        <p style="margin-top:8px;font-size:.85rem">Data will appear after the first GitHub Actions run completes.</p>
-        <p style="margin-top:16px"><a href="https://github.com/samcolibri/ai-demand-pulse/actions" style="color:#3b82f6">Watch the live run →</a></p>
+        <div class="spin"></div>
+        <p>FORGE agents are running the first analysis...</p>
+        <p style="margin-top:8px;font-size:.82rem;color:var(--muted)">Data populates after the first GitHub Actions run.</p>
+        <p style="margin-top:16px"><a href="https://github.com/samcolibri/ai-demand-pulse/actions">Watch the live run →</a></p>
       </div>`;
   }
 }
-
-loadData();
+init();
 </script>
 </body>
 </html>
