@@ -3,494 +3,466 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Demand Pulse — June 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>AI Demand Pulse — Top 500 Repos June 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050810;--s:#0d1117;--b:#21262d;--hot:#ef4444;--warm:#f59e0b;--cool:#3b82f6;--green:#10b981;--purple:#8b5cf6;--text:#e6edf3;--muted:#7d8590;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+:root{--bg:#050810;--s:#0d1117;--b:#21262d;--text:#e6edf3;--muted:#7d8590;--cool:#3b82f6;--hot:#ef4444;--warm:#f59e0b;--green:#10b981;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6}
 a{color:var(--cool);text-decoration:none}a:hover{text-decoration:underline}
 nav{background:var(--s);border-bottom:1px solid var(--b);padding:12px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-.brand{font-weight:700;display:flex;align-items:center;gap:8px}
-.dot{width:8px;height:8px;background:var(--hot);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.nav-r{display:flex;gap:16px;font-size:.8rem;color:var(--muted)}
+.brand{font-weight:800;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.live{width:8px;height:8px;background:var(--green);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-r{font-size:.8rem;color:var(--muted);display:flex;gap:16px;align-items:center}
 .nav-r a{color:var(--cool)}
 
-.hero{padding:72px 32px 56px;text-align:center;max-width:920px;margin:0 auto}
-.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.1;margin-bottom:18px}
+.hero{padding:64px 32px 48px;text-align:center;max-width:860px;margin:0 auto}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:16px}
 .g{background:linear-gradient(135deg,#ef4444,#f59e0b,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero p{color:var(--muted);font-size:1rem;max-width:600px;margin:0 auto 28px}
-.stats{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-.stat{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:12px 20px;text-align:center;min-width:120px}
-.stat-n{font-size:1.8rem;font-weight:800}
-.stat-l{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.hero p{color:var(--muted);max-width:580px;margin:0 auto 28px;font-size:1rem}
+.kpis{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.kpi{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:12px 20px;text-align:center;min-width:110px}
+.kpi-n{font-size:1.8rem;font-weight:800;line-height:1}
+.kpi-l{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
 
-.sec{max-width:1300px;margin:0 auto;padding:0 32px 56px}
-.sh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--b)}
-.st{font-size:.85rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
-.ss{font-size:.78rem;color:var(--muted)}
+.sec{max-width:1400px;margin:0 auto;padding:0 32px 52px}
+.sh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--b)}
+.st{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
+.ss{font-size:.75rem;color:var(--muted)}
 
-/* DEMAND CHART — horizontal bars */
-.demand-chart{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
-.dc-row{display:grid;grid-template-columns:200px 1fr 50px;align-items:center;gap:12px}
-.dc-label{font-size:.8rem;text-align:right;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dc-bar-wrap{height:28px;background:var(--b);border-radius:4px;overflow:hidden;position:relative}
-.dc-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding:0 8px;font-size:.72rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;transition:width 1.2s ease}
-.dc-n{font-size:.85rem;font-weight:700;color:var(--text)}
-.chart-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:.75rem;color:var(--muted)}
-.legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px}
+/* ── HEATMAP ── */
+.hm-outer{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.hm-grid{display:inline-grid;gap:3px;min-width:100%}
+.hm-label-row{display:contents}
+.hm-corner{background:transparent}
+.hm-col-label{font-size:.65rem;color:var(--muted);text-align:center;padding:4px 2px;line-height:1.2;writing-mode:vertical-lr;transform:rotate(180deg);height:80px;align-self:end;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:default}
+.hm-row-label{font-size:.7rem;color:var(--muted);text-align:right;padding:4px 8px 4px 0;white-space:nowrap;line-height:1.2;align-self:center}
+.hm-cell{width:56px;height:40px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;cursor:pointer;transition:transform .1s,box-shadow .1s;position:relative}
+.hm-cell:hover{transform:scale(1.12);z-index:20;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+.hm-cell.empty{background:#0d1117;color:transparent;cursor:default}
+.hm-cell.empty:hover{transform:none;box-shadow:none}
 
-/* HEATMAP */
-.hm-wrap{overflow-x:auto}
-table.hm{border-collapse:collapse;font-size:.72rem;min-width:900px;width:100%}
-.hm th{padding:6px 8px;color:var(--muted);font-weight:600;white-space:nowrap;border-bottom:1px solid var(--b);text-align:center}
-.hm th:first-child{text-align:left;min-width:180px}
-.hm td{padding:5px 6px;text-align:center;border:1px solid var(--bg);border-radius:3px;cursor:default;transition:transform .1s}
-.hm td:first-child{text-align:left;color:var(--muted);border:none;background:none;padding-left:0}
-.hm td:hover{transform:scale(1.15);z-index:5;position:relative}
-.c0{background:transparent;color:transparent}
-.c1{background:#1a2744;color:#93c5fd}
-.c2{background:#1a3a2a;color:#6ee7b7}
-.c3{background:#3d2e0a;color:#fcd34d}
-.c4{background:#4a1a0a;color:#fca5a5}
-.c5{background:#5a0a0a;color:#f87171;font-weight:700}
-.hm-legend{display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--muted);margin-top:10px}
-.ls{width:16px;height:16px;border-radius:3px;display:inline-block}
+/* heat color scale */
+.h1{background:#0d2137;color:#60a5fa}
+.h2{background:#0f3726;color:#34d399}
+.h3{background:#3d2e06;color:#fbbf24}
+.h4{background:#4a1208;color:#f87171}
+.h5{background:#5a0505;color:#ef4444;box-shadow:0 0 10px rgba(239,68,68,.3)}
 
-/* TOP CLUSTERS */
-.clusters{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.cc{background:var(--s);border:1px solid var(--b);border-radius:12px;padding:18px}
-.cc-rank{font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.cc-n{font-size:1.6rem;font-weight:800;color:var(--hot)}
-.cc-fn{font-size:.95rem;font-weight:700;margin-bottom:3px}
-.cc-ind{font-size:.78rem;color:var(--muted);margin-bottom:10px}
-.cc-bar{height:3px;background:var(--b);border-radius:2px;margin-bottom:10px}
-.cc-fill{height:100%;background:linear-gradient(90deg,var(--hot),var(--warm));border-radius:2px}
-.cc-repos li{font-size:.73rem;padding:3px 0;border-top:1px solid var(--b);list-style:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cc-repos li a{color:var(--cool);font-family:var(--mono)}
+/* ── TOOLTIP ── */
+#tooltip{position:fixed;background:#0d1117;border:1px solid var(--b);border-radius:8px;padding:12px 14px;max-width:320px;z-index:1000;pointer-events:none;display:none;font-size:.78rem;box-shadow:0 8px 30px rgba(0,0,0,.6)}
+#tooltip .tt-title{font-weight:700;margin-bottom:8px;color:var(--text)}
+#tooltip .tt-count{color:var(--warm);font-weight:700;font-size:.9rem;margin-bottom:6px}
+#tooltip .tt-repo{padding:3px 0;border-top:1px solid var(--b);display:flex;justify-content:space-between;gap:8px}
+#tooltip .tt-repo a{color:var(--cool);font-family:var(--mono);font-size:.72rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#tooltip .tt-stars{color:var(--warm);font-size:.7rem;white-space:nowrap;flex-shrink:0}
 
-/* TOOL BARS */
-.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
-.tc{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:16px}
-.tc-name{font-size:.8rem;font-weight:700;margin-bottom:8px}
-.tc-bar{height:8px;background:var(--b);border-radius:4px;overflow:hidden;margin-bottom:8px}
+/* ── BAR CHARTS ── */
+.bars{display:flex;flex-direction:column;gap:5px}
+.bar-row{display:grid;grid-template-columns:180px 1fr 48px;align-items:center;gap:10px}
+.bar-lbl{font-size:.78rem;color:var(--muted);text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:default}
+.bar-wrap{height:26px;background:var(--b);border-radius:3px;overflow:hidden;cursor:pointer}
+.bar-fill{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:8px;font-size:.7rem;font-weight:600;color:#fff;white-space:nowrap;transition:width 1s ease}
+.bar-n{font-size:.82rem;font-weight:700}
+
+/* ── CLUSTERS ── */
+.clusters{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.cc{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:16px}
+.cc-rank{font-size:.62rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.cc-n{font-size:1.5rem;font-weight:800;color:var(--hot);line-height:1}
+.cc-fn{font-weight:700;font-size:.9rem;margin:4px 0 2px}
+.cc-ind{font-size:.75rem;color:var(--muted);margin-bottom:8px}
+.cc-list{list-style:none;font-size:.72rem}
+.cc-list li{padding:3px 0;border-top:1px solid var(--b);display:flex;justify-content:space-between;align-items:center;gap:6px}
+.cc-list li a{color:var(--cool);font-family:var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cc-list .cc-stars{color:var(--warm);white-space:nowrap;flex-shrink:0;font-size:.68rem}
+
+/* ── TOOLS ── */
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.tc{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:14px}
+.tc-n{font-size:.82rem;font-weight:700;margin-bottom:8px}
+.tc-bar{height:7px;background:var(--b);border-radius:4px;overflow:hidden;margin-bottom:6px}
 .tc-fill{height:100%;border-radius:4px}
-.tc-n{font-size:1.6rem;font-weight:800}
-.tc-pct{font-size:.75rem;color:var(--muted)}
+.tc-count{font-size:1.5rem;font-weight:800}
+.tc-pct{font-size:.7rem;color:var(--muted)}
 
-/* INSIGHT */
-.insight{background:#160505;border:1px solid #7f1d1d;border-radius:12px;padding:22px;margin-bottom:0}
-.ins-l{font-size:.7rem;font-weight:700;color:var(--hot);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+/* ── REPO TABLE ── */
+.tbl-ctrl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.tbl-ctrl input,.tbl-ctrl select{background:var(--s);border:1px solid var(--b);border-radius:6px;padding:7px 11px;color:var(--text);font-size:.78rem}
+.tbl-ctrl input{flex:1;min-width:180px}
+.tbl-info{font-size:.75rem;color:var(--muted);margin-left:auto;white-space:nowrap}
+table.rt{width:100%;border-collapse:collapse;font-size:.75rem}
+.rt thead th{background:var(--s);padding:9px 10px;text-align:left;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.8px;border-bottom:2px solid var(--b);cursor:pointer;white-space:nowrap;user-select:none}
+.rt thead th:hover,.rt thead th.sorted{color:var(--text)}
+.rt tbody tr:hover td{background:#0c1118}
+.rt tbody td{padding:8px 10px;border-bottom:1px solid #141b22;vertical-align:middle}
+.rt td:first-child{font-family:var(--mono);font-size:.72rem}
+.badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:10px;font-size:.62rem;font-weight:600;white-space:nowrap}
+.bi{background:#1e3a5f;color:#93c5fd}.bg{background:#064e3b;color:#6ee7b7}
+.ba{background:#78350f;color:#fcd34d}.br{background:#4a0e0e;color:#fca5a5}.bp{background:#2e1065;color:#c4b5fd}
+.pg{display:flex;gap:6px;justify-content:center;margin-top:14px;flex-wrap:wrap;align-items:center}
+.pg button{background:var(--s);border:1px solid var(--b);border-radius:5px;padding:5px 11px;color:var(--text);cursor:pointer;font-size:.75rem}
+.pg button:hover,.pg button.on{background:var(--cool);border-color:var(--cool);color:#fff}
+.pg button:disabled{opacity:.4;cursor:default}
+.pg-info{font-size:.75rem;color:var(--muted)}
+
+.insight{background:#160505;border:1px solid #7f1d1d;border-radius:12px;padding:20px}
+.ins-l{font-size:.68rem;font-weight:700;color:var(--hot);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
 .ins-t{font-size:1rem;font-weight:600;line-height:1.5}
 
-/* FULL REPO TABLE */
-.tbl-controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
-.tbl-controls input{background:var(--s);border:1px solid var(--b);border-radius:6px;padding:7px 12px;color:var(--text);font-size:.8rem;flex:1;min-width:200px}
-.tbl-controls select{background:var(--s);border:1px solid var(--b);border-radius:6px;padding:7px 12px;color:var(--text);font-size:.8rem}
-.tbl-info{font-size:.78rem;color:var(--muted);margin-left:auto}
-.tbl-wrap{overflow-x:auto}
-table.repos{width:100%;border-collapse:collapse;font-size:.78rem}
-.repos thead th{background:var(--s);padding:10px 12px;text-align:left;color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.8px;border-bottom:2px solid var(--b);cursor:pointer;white-space:nowrap;user-select:none}
-.repos thead th:hover{color:var(--text)}
-.repos thead th.sorted{color:var(--cool)}
-.repos tbody tr{border-bottom:1px solid var(--b)}
-.repos tbody tr:hover td{background:#0d1117}
-.repos tbody td{padding:9px 12px;vertical-align:middle}
-.repos td:first-child{font-family:var(--mono);font-size:.75rem;white-space:nowrap}
-.repos td:first-child a{color:var(--cool)}
-.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.65rem;font-weight:600;white-space:nowrap}
-.b-blue{background:#1e3a5f;color:#93c5fd}
-.b-green{background:#064e3b;color:#6ee7b7}
-.b-amber{background:#78350f;color:#fcd34d}
-.b-red{background:#4a0e0e;color:#fca5a5}
-.b-purple{background:#2e1065;color:#c4b5fd}
-.b-gray{background:#1e293b;color:#94a3b8}
-.stars{color:var(--warm);font-weight:600}
-.pg{display:flex;gap:8px;justify-content:center;margin-top:16px;align-items:center}
-.pg button{background:var(--s);border:1px solid var(--b);border-radius:6px;padding:6px 12px;color:var(--text);cursor:pointer;font-size:.78rem}
-.pg button:hover{border-color:var(--cool);color:var(--cool)}
-.pg button.active{background:var(--cool);border-color:var(--cool);color:#fff}
-.pg-info{color:var(--muted);font-size:.78rem}
-
-/* CTA */
-.cta{background:linear-gradient(135deg,#0d1117,#160b24);border:1px solid #30185c;border-radius:16px;padding:32px;text-align:center}
-.cta-t{font-size:1.3rem;font-weight:800;margin-bottom:8px}
-.cta-s{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+.cta{background:linear-gradient(135deg,#0a0e1a,#12082a);border:1px solid #2d1b6e;border-radius:14px;padding:30px;text-align:center}
+.cta-t{font-size:1.2rem;font-weight:800;margin-bottom:8px}
+.cta-s{color:var(--muted);font-size:.88rem;margin-bottom:18px}
 .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:.875rem;font-weight:600;transition:opacity .2s;text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:7px;font-size:.85rem;font-weight:600;text-decoration:none}
 .btn:hover{opacity:.85;text-decoration:none}
-.btn-p{background:var(--cool);color:#fff}
-.btn-li{background:#0077b5;color:#fff}
-.btn-g{background:var(--s);border:1px solid var(--b);color:var(--text)}
+.btn-p{background:#3b82f6;color:#fff}.btn-li{background:#0077b5;color:#fff}.btn-g{background:var(--s);border:1px solid var(--b);color:var(--text)}
 
 .loading{text-align:center;padding:80px;color:var(--muted)}
-.spin{width:36px;height:36px;border:3px solid var(--b);border-top-color:var(--cool);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px}
+.spin{width:34px;height:34px;border:3px solid var(--b);border-top-color:var(--cool);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px}
 @keyframes spin{to{transform:rotate(360deg)}}
-footer{border-top:1px solid var(--b);padding:20px 32px;text-align:center;color:var(--muted);font-size:.78rem}
+footer{border-top:1px solid var(--b);padding:18px 32px;text-align:center;color:var(--muted);font-size:.76rem}
 footer a{color:var(--cool)}
 </style>
 </head>
 <body>
+
+<div id="tooltip"></div>
+
 <nav>
-  <div class="brand"><span class="dot"></span>AI Demand Pulse</div>
+  <div class="brand"><span class="live"></span>AI Demand Pulse</div>
   <div class="nav-r">
-    <span id="nav-n">loading...</span>
-    <span id="nav-d">June 2026</span>
+    <span id="nv-n">—</span>
+    <span id="nv-d">June 2026</span>
     <a href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">GitHub ↗</a>
   </div>
 </nav>
 
 <div class="hero">
   <h1><span class="g">AI Demand Pulse</span></h1>
-  <p>Which industries and business functions are hungry for AI in June 2026? <strong>Real GitHub repos. Real builders. Real signal.</strong> Updated every 6 hours by FORGE agents.</p>
-  <div class="stats">
-    <div class="stat"><div class="stat-n" id="s-repos">—</div><div class="stat-l">Repos Analyzed</div></div>
-    <div class="stat"><div class="stat-n" id="s-ind">11</div><div class="stat-l">Industries</div></div>
-    <div class="stat"><div class="stat-n" id="s-fn">12</div><div class="stat-l">Business Functions</div></div>
-    <div class="stat"><div class="stat-n">6h</div><div class="stat-l">Update Cadence</div></div>
+  <p>Top 500 most-starred AI repos on GitHub, June 2026. Real repos. Real star counts. Real links. Where is the developer community actually building?</p>
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-n" id="k-repos">—</div><div class="kpi-l">Repos</div></div>
+    <div class="kpi"><div class="kpi-n" id="k-min">—</div><div class="kpi-l">Min Stars</div></div>
+    <div class="kpi"><div class="kpi-n" id="k-max">—</div><div class="kpi-l">Max Stars</div></div>
+    <div class="kpi"><div class="kpi-n" id="k-ind">—</div><div class="kpi-l">Industries</div></div>
   </div>
 </div>
 
-<div id="app">
-  <div class="loading"><div class="spin"></div><p>FORGE agents loading demand data...</p></div>
-</div>
+<div id="app"><div class="loading"><div class="spin"></div><p>Loading 500 repos...</p></div></div>
 
 <footer>
   Powered by <strong>FORGE × Hephaestus × agmsg</strong> ·
-  <a href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">samcolibri/ai-demand-pulse</a> ·
   <a href="https://github.com/samcolibri/forge" target="_blank">samcolibri/forge</a> ·
-  <a href="https://samcolibri.github.io/forge/" target="_blank">FORGE dashboard</a>
+  <a href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">samcolibri/ai-demand-pulse</a> ·
+  Updated every 6h via GitHub Actions
 </footer>
 
 <script>
-// ── constants ──────────────────────────────────────────────────────────────
-const BIZ = ['Customer Support','Legal & Compliance','Education & Training',
-  'Content & Marketing','HR & Recruiting','Sales & Outreach','Finance & Analytics',
-  'Healthcare & Clinical','Product Development','Retail Operations',
-  'Operations & Logistics','DevOps & Infrastructure','Data & Analytics'];
-const IND = ['Customer Support','Financial Services','SaaS & Developer Tools',
-  'Education','Legal & Professional Services','Healthcare','HR & Workforce',
-  'Media & Content','Retail & E-commerce','Real Estate','Sales & Marketing'];
-const TOOL_COLORS = {claude:'#da7756',openai:'#10b981',gemini:'#3b82f6',
-  'open-source':'#8b5cf6',codex:'#f59e0b',other:'#4b5563'};
-const INDUSTRY_COLORS = ['#ef4444','#f59e0b','#3b82f6','#10b981','#8b5cf6',
-  '#06b6d4','#f97316','#84cc16','#e879f9','#22d3ee','#a78bfa'];
-
-function hc(n){if(!n)return'c0';if(n<=2)return'c1';if(n<=5)return'c2';if(n<=15)return'c3';if(n<=35)return'c4';return'c5';}
-function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function numFmt(n){return n>=1000?(n/1000).toFixed(1)+'k':n;}
-
-// ── state ──────────────────────────────────────────────────────────────────
+const TOOL_COLORS={Claude:'#da7756','OpenAI/GPT':'#10b981',Gemini:'#3b82f6','Open-source LLM':'#8b5cf6',HuggingFace:'#f59e0b','Multi-model':'#4b5563'};
+const IND_COLORS=['#ef4444','#f59e0b','#10b981','#3b82f6','#8b5cf6','#06b6d4','#f97316','#ec4899','#84cc16','#22d3ee','#a78bfa'];
 let allRepos=[], filteredRepos=[], sortKey='stars', sortAsc=false, page=1;
-const PAGE_SIZE=50;
+const PAGE=50;
 
-// ── render ─────────────────────────────────────────────────────────────────
-function render(data, classified){
-  document.getElementById('s-repos').textContent = classified.length;
-  document.getElementById('nav-n').textContent = classified.length + ' repos';
-  document.getElementById('nav-d').textContent = data.analysis_date || 'June 2026';
-  allRepos = classified;
-  filteredRepos = [...classified];
+function fmt(n){return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(1)+'k':n}
+function hClass(n){if(!n||n===0)return'empty';if(n<=3)return'h1';if(n<=8)return'h2';if(n<=20)return'h3';if(n<=50)return'h4';return'h5'}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
-  // demand chart data
-  const fnCount={};
-  classified.forEach(r=>{fnCount[r.business_function]=(fnCount[r.business_function]||0)+1;});
-  const fnSorted=Object.entries(fnCount).sort((a,b)=>b[1]-a[1]);
-  const maxFn=fnSorted[0]?.[1]||1;
+function render(data, repos){
+  allRepos=repos; filteredRepos=[...repos];
+  const inds=data.all_industries||[]; 
+  const fns=data.all_functions||[];
 
-  // industry chart data
-  const indCount={};
-  classified.forEach(r=>{indCount[r.industry]=(indCount[r.industry]||0)+1;});
-  const indSorted=Object.entries(indCount).sort((a,b)=>b[1]-a[1]);
+  // KPIs
+  document.getElementById('k-repos').textContent=fmt(data.total_repos_analyzed);
+  document.getElementById('k-min').textContent=fmt(data.stars_range?.min||0);
+  document.getElementById('k-max').textContent=fmt(data.stars_range?.max||0);
+  document.getElementById('k-ind').textContent=inds.length;
+  document.getElementById('nv-n').textContent=data.total_repos_analyzed+' repos';
+  document.getElementById('nv-d').textContent=data.analysis_date||'June 2026';
 
-  // heatmap matrix
+  // Build matrix from repos
   const mat={};
-  IND.forEach(i=>{mat[i]={};BIZ.forEach(b=>{mat[i][b]={count:0,repos:[]};});});
-  classified.forEach(r=>{
-    const i=r.industry, b=r.business_function;
-    if(mat[i]&&mat[i][b]){mat[i][b].count++;if(mat[i][b].repos.length<3)mat[i][b].repos.push(r);}
+  inds.forEach(i=>{mat[i]={};fns.forEach(f=>{mat[i][f]=[];});});
+  repos.forEach(r=>{
+    if(mat[r.industry]&&mat[r.industry][r.business_function])
+      mat[r.industry][r.business_function].push(r);
   });
 
-  // top clusters
+  // Heatmap grid: cols = functions, rows = industries
+  const cols = fns.length + 1; // +1 for row label
+  let hmHTML = `<div class="hm-outer"><div class="hm-grid" style="grid-template-columns:160px repeat(${fns.length},56px)">`;
+  // header row
+  hmHTML += '<div class="hm-corner"></div>';
+  fns.forEach(f=>{
+    hmHTML += `<div class="hm-col-label" title="${esc(f)}">${esc(f)}</div>`;
+  });
+  // data rows
+  inds.forEach(ind=>{
+    hmHTML += `<div class="hm-row-label" title="${esc(ind)}">${esc(ind)}</div>`;
+    fns.forEach(fn=>{
+      const cell = mat[ind][fn]||[];
+      const n = cell.length;
+      const cls = hClass(n);
+      const top3 = cell.sort((a,b)=>b.stars-a.stars).slice(0,3);
+      const tt = JSON.stringify({ind,fn,n,repos:top3.map(r=>({n:r.full_name,u:r.html_url,s:r.stars,d:(r.description||'').slice(0,60)}))});
+      hmHTML += `<div class="hm-cell ${cls}" data-tt='${tt.replace(/'/g,"&#39;")}'>${n||''}</div>`;
+    });
+  });
+  hmHTML += '</div></div>';
+  hmHTML += `<div style="display:flex;gap:12px;margin-top:10px;font-size:.72rem;color:var(--muted);align-items:center">
+    <span>Intensity:</span>
+    <span style="background:#0d2137;color:#60a5fa;padding:2px 8px;border-radius:3px">1–3</span>
+    <span style="background:#0f3726;color:#34d399;padding:2px 8px;border-radius:3px">4–8</span>
+    <span style="background:#3d2e06;color:#fbbf24;padding:2px 8px;border-radius:3px">9–20</span>
+    <span style="background:#4a1208;color:#f87171;padding:2px 8px;border-radius:3px">21–50</span>
+    <span style="background:#5a0505;color:#ef4444;padding:2px 8px;border-radius:3px;box-shadow:0 0 8px rgba(239,68,68,.3)">50+</span>
+  </div>`;
+
+  // Bar chart — industries
+  const indCounts=data.trending_industries||[];
+  const maxI=indCounts[0]?.count||1;
+  let barInd='<div class="bars">';
+  indCounts.forEach((x,i)=>{
+    const pct=Math.round(x.count/maxI*100);
+    const color=IND_COLORS[i%IND_COLORS.length];
+    const label=x.industry||x.ind||'';
+    barInd+=`<div class="bar-row">
+      <div class="bar-lbl" title="${esc(label)}">${esc(label)}</div>
+      <div class="bar-wrap" onclick="filterByIndustry('${esc(label)}')"><div class="bar-fill" style="width:${pct}%;background:${color}">${x.count>=8?x.count+' repos':''}</div></div>
+      <div class="bar-n">${x.count}</div>
+    </div>`;
+  });
+  barInd+='</div>';
+
+  // Bar chart — functions
+  const fnCounts=data.trending_functions||[];
+  const maxF=fnCounts[0]?.count||1;
+  let barFn='<div class="bars">';
+  fnCounts.forEach((x,i)=>{
+    const pct=Math.round(x.count/maxF*100);
+    const color=IND_COLORS[i%IND_COLORS.length];
+    const label=x.business_function||x.fn||'';
+    barFn+=`<div class="bar-row">
+      <div class="bar-lbl" title="${esc(label)}">${esc(label)}</div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${color}">${x.count>=8?x.count+' repos':''}</div></div>
+      <div class="bar-n">${x.count}</div>
+    </div>`;
+  });
+  barFn+='</div>';
+
+  // Top clusters
   const tops=(data.top_clusters||[]).slice(0,9);
   const maxC=tops[0]?.count||1;
-
-  // tool counts
-  const tools=data.by_ai_tool||{};
-  const totalTools=Object.values(tools).reduce((a,b)=>a+b,0)||1;
-
-  document.getElementById('app').innerHTML = `
-<!-- DEMAND CHART - Business Functions -->
-<div class="sec">
-  <div class="sh"><span class="st">AI Demand by Business Function</span><span class="ss">Repos per function — ${classified.length} repos analyzed</span></div>
-  <div class="demand-chart" id="dc-fn"></div>
-</div>
-
-<!-- DEMAND CHART - Industries -->
-<div class="sec">
-  <div class="sh"><span class="st">AI Demand by Industry</span><span class="ss">Where vertical AI is being built right now</span></div>
-  <div class="demand-chart" id="dc-ind"></div>
-</div>
-
-<!-- HEATMAP -->
-<div class="sec">
-  <div class="sh"><span class="st">Demand Heatmap</span><span class="ss">Business function × industry intensity — hover for details</span></div>
-  <div class="hm-wrap" id="heatmap-wrap"></div>
-  <div class="hm-legend">
-    <span>Intensity:</span>
-    <span class="ls c1"></span>1–2
-    <span class="ls c2"></span>3–5
-    <span class="ls c3"></span>6–15
-    <span class="ls c4"></span>16–35
-    <span class="ls c5"></span>36+
-  </div>
-</div>
-
-<!-- TOP CLUSTERS -->
-<div class="sec">
-  <div class="sh"><span class="st">Top Demand Clusters</span><span class="ss">Highest concentration of active repos</span></div>
-  <div class="clusters" id="clusters"></div>
-</div>
-
-<!-- AI TOOLS -->
-<div class="sec">
-  <div class="sh"><span class="st">By AI Tool</span><span class="ss">Which AI tools builders are using</span></div>
-  <div class="tools" id="tools"></div>
-</div>
-
-<!-- HOT INSIGHT -->
-<div class="sec">
-  <div class="insight">
-    <div class="ins-l">🤯 Hot Insight — June 2026</div>
-    <div class="ins-t">${esc(data.hot_insight||'')}</div>
-  </div>
-</div>
-
-<!-- ALL REPOS TABLE -->
-<div class="sec" id="repo-sec">
-  <div class="sh"><span class="st">All ${classified.length} Repos Analyzed</span><span class="ss">Every repo — sortable, filterable, all links real</span></div>
-  <div class="tbl-controls">
-    <input type="text" id="search" placeholder="Search repo name, description, industry..." oninput="filterRepos()">
-    <select id="f-ind" onchange="filterRepos()"><option value="">All Industries</option>${IND.map(i=>`<option>${i}</option>`).join('')}</select>
-    <select id="f-biz" onchange="filterRepos()"><option value="">All Functions</option>${BIZ.map(b=>`<option>${b}</option>`).join('')}</select>
-    <select id="f-tool" onchange="filterRepos()"><option value="">All Tools</option>${Object.keys(TOOL_COLORS).map(t=>`<option>${t}</option>`).join('')}</select>
-    <span class="tbl-info" id="tbl-info"></span>
-  </div>
-  <div class="tbl-wrap">
-    <table class="repos">
-      <thead>
-        <tr>
-          <th onclick="sortRepos('full_name')">Repo</th>
-          <th onclick="sortRepos('description')">Description</th>
-          <th onclick="sortRepos('business_function')">Function</th>
-          <th onclick="sortRepos('industry')">Industry</th>
-          <th onclick="sortRepos('ai_tool')">Tool</th>
-          <th onclick="sortRepos('language')">Lang</th>
-          <th onclick="sortRepos('stars')" class="sorted">⭐ Stars</th>
-          <th onclick="sortRepos('pushed_at')">Updated</th>
-        </tr>
-      </thead>
-      <tbody id="repo-body"></tbody>
-    </table>
-  </div>
-  <div class="pg" id="pg"></div>
-</div>
-
-<!-- CTA -->
-<div class="sec">
-  <div class="cta">
-    <div class="cta-t">What AI problem should we solve next?</div>
-    <div class="cta-s">Vote in the GitHub Discussions poll · Share on LinkedIn · Star the repo</div>
-    <div class="btns">
-      <a class="btn btn-p" href="https://github.com/samcolibri/ai-demand-pulse/discussions" target="_blank">Vote in poll</a>
-      <a class="btn btn-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsamcolibri.github.io%2Fai-demand-pulse%2F" target="_blank">Share on LinkedIn</a>
-      <a class="btn btn-g" href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">⭐ Star on GitHub</a>
-    </div>
-  </div>
-</div>
-`;
-
-  // Render demand charts
-  const dcFn = document.getElementById('dc-fn');
-  fnSorted.forEach(([fn, cnt], i)=>{
-    const pct = Math.round(cnt/maxFn*100);
-    const color = INDUSTRY_COLORS[i%INDUSTRY_COLORS.length];
-    dcFn.innerHTML += `<div class="dc-row">
-      <div class="dc-label" title="${esc(fn)}">${esc(fn)}</div>
-      <div class="dc-bar-wrap"><div class="dc-bar" style="width:${pct}%;background:${color}">${cnt >= 8 ? cnt+' repos' : ''}</div></div>
-      <div class="dc-n">${cnt}</div>
-    </div>`;
-  });
-
-  const dcInd = document.getElementById('dc-ind');
-  const maxInd = indSorted[0]?.[1]||1;
-  indSorted.forEach(([ind, cnt], i)=>{
-    const pct = Math.round(cnt/maxInd*100);
-    const color = INDUSTRY_COLORS[i%INDUSTRY_COLORS.length];
-    dcInd.innerHTML += `<div class="dc-row">
-      <div class="dc-label" title="${esc(ind)}">${esc(ind)}</div>
-      <div class="dc-bar-wrap"><div class="dc-bar" style="width:${pct}%;background:${color}">${cnt >= 8 ? cnt+' repos' : ''}</div></div>
-      <div class="dc-n">${cnt}</div>
-    </div>`;
-  });
-
-  // Render heatmap
-  let hmHTML = '<table class="hm"><thead><tr><th>Industry ↓ / Function →</th>';
-  BIZ.forEach(b=>{ hmHTML += `<th title="${esc(b)}">${esc(b.split(' ')[0])}</th>`; });
-  hmHTML += '</tr></thead><tbody>';
-  IND.forEach(ind=>{
-    hmHTML += `<tr><td>${esc(ind)}</td>`;
-    BIZ.forEach(b=>{
-      const cell = mat[ind][b]||{count:0,repos:[]};
-      const tt = cell.count > 0
-        ? `${cell.count} repos: ${cell.repos.map(r=>r.full_name||r.name||'').join(', ')}`
-        : '0 repos';
-      hmHTML += `<td class="${hc(cell.count)}" title="${esc(tt)}">${cell.count||''}</td>`;
-    });
-    hmHTML += '</tr>';
-  });
-  hmHTML += '</tbody></table>';
-  document.getElementById('heatmap-wrap').innerHTML = hmHTML;
-
-  // Render top clusters
-  const medals = ['🔥','🔥','🔥','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣'];
-  let cHTML = '';
-  tops.forEach((c, i)=>{
-    const repos = c.repos||[];
-    let rl = repos.slice(0,3).map(r=>{
-      const url = r.url||r.html_url||`https://github.com/${r.name}`;
-      const n = (r.name||'').split('/').pop()||r.name||'';
-      return n ? `<li><a href="${esc(url)}" target="_blank">${esc(n)}</a></li>` : '';
-    }).join('');
-    cHTML += `<div class="cc">
-      <div class="cc-rank">${medals[i]||''} #${i+1} demand cluster</div>
+  const medals=['🔥','🔥','🔥','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣'];
+  let clHTML='<div class="clusters">';
+  tops.forEach((c,i)=>{
+    const rl=(c.repos||[]).slice(0,3).map(r=>`<li>
+      <a href="${esc(r.html_url||'#')}" target="_blank" title="${esc(r.description||'')}">${esc(r.full_name||'')}</a>
+      <span class="cc-stars">⭐ ${fmt(r.stars||0)}</span>
+    </li>`).join('');
+    clHTML+=`<div class="cc">
+      <div class="cc-rank">${medals[i]||''} #${i+1}</div>
       <div class="cc-n">${c.count}</div>
       <div class="cc-fn">${esc(c.business_function)}</div>
       <div class="cc-ind">${esc(c.industry)}</div>
-      <div class="cc-bar"><div class="cc-fill" style="width:${Math.round(c.count/maxC*100)}%"></div></div>
-      ${rl?`<ul class="cc-repos">${rl}</ul>`:''}
+      ${rl?`<ul class="cc-list">${rl}</ul>`:''}
     </div>`;
   });
-  document.getElementById('clusters').innerHTML = cHTML;
+  clHTML+='</div>';
 
-  // Render tools
-  let tHTML = '';
-  Object.entries(tools).sort((a,b)=>b[1]-a[1]).forEach(([tool, cnt])=>{
-    const pct = Math.round(cnt/totalTools*100);
-    const color = TOOL_COLORS[tool]||'#4b5563';
-    tHTML += `<div class="tc">
-      <div class="tc-name">${esc(tool.charAt(0).toUpperCase()+tool.slice(1))}</div>
+  // Tools
+  const tools=data.by_ai_tool||{};
+  const tot=Object.values(tools).reduce((a,b)=>a+b,0)||1;
+  let tlHTML='<div class="tools">';
+  Object.entries(tools).sort((a,b)=>b[1]-a[1]).forEach(([t,n])=>{
+    const color=TOOL_COLORS[t]||'#4b5563';
+    const pct=Math.round(n/tot*100);
+    tlHTML+=`<div class="tc">
+      <div class="tc-n">${esc(t)}</div>
       <div class="tc-bar"><div class="tc-fill" style="width:${pct}%;background:${color}"></div></div>
-      <div class="tc-n" style="color:${color}">${cnt}</div>
+      <div class="tc-count" style="color:${color}">${n}</div>
       <div class="tc-pct">${pct}% of repos</div>
     </div>`;
   });
-  document.getElementById('tools').innerHTML = tHTML;
+  tlHTML+='</div>';
 
-  // Render repo table
+  document.getElementById('app').innerHTML=`
+<div class="sec">
+  <div class="sh"><span class="st">Demand Heatmap</span><span class="ss">Industry × Business Function — hover cells to see real repos with links</span></div>
+  ${hmHTML}
+</div>
+<div class="sec">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+    <div>
+      <div class="sh"><span class="st">By Industry</span><span class="ss">click bar to filter table</span></div>
+      ${barInd}
+    </div>
+    <div>
+      <div class="sh"><span class="st">By Business Function</span></div>
+      ${barFn}
+    </div>
+  </div>
+</div>
+<div class="sec">
+  <div class="sh"><span class="st">Top Demand Clusters</span><span class="ss">real repo links — sorted by count</span></div>
+  ${clHTML}
+</div>
+<div class="sec">
+  <div class="sh"><span class="st">AI Tools</span><span class="ss">which tools these repos mention</span></div>
+  ${tlHTML}
+</div>
+<div class="sec">
+  <div class="insight">
+    <div class="ins-l">🔍 Signal — June 2026</div>
+    <div class="ins-t">${esc(data.hot_insight||'')}</div>
+  </div>
+</div>
+<div class="sec" id="tbl-sec">
+  <div class="sh"><span class="st">All 500 Repos</span><span class="ss">sortable · filterable · every link real</span></div>
+  <div class="tbl-ctrl">
+    <input type="text" id="srch" placeholder="Search name, description..." oninput="filterTable()">
+    <select id="fi" onchange="filterTable()"><option value="">All Industries</option></select>
+    <select id="ff" onchange="filterTable()"><option value="">All Functions</option></select>
+    <select id="ft" onchange="filterTable()"><option value="">All Tools</option></select>
+    <span class="tbl-info" id="tbl-i"></span>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="rt">
+      <thead><tr>
+        <th onclick="sortTable('full_name')">Repository</th>
+        <th onclick="sortTable('description')">Description</th>
+        <th onclick="sortTable('business_function')">Function</th>
+        <th onclick="sortTable('industry')">Industry</th>
+        <th onclick="sortTable('ai_tool')">Tool</th>
+        <th onclick="sortTable('language')">Lang</th>
+        <th onclick="sortTable('stars')" class="sorted">⭐ Stars</th>
+        <th onclick="sortTable('pushed_at')">Updated</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <div class="pg" id="pager"></div>
+</div>
+<div class="sec">
+  <div class="cta">
+    <div class="cta-t">What vertical should AI solve next?</div>
+    <div class="cta-s">Vote · Share · Star — help map where AI is going</div>
+    <div class="btns">
+      <a class="btn btn-p" href="https://github.com/samcolibri/ai-demand-pulse/discussions" target="_blank">Vote in poll</a>
+      <a class="btn btn-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsamcolibri.github.io%2Fai-demand-pulse%2F" target="_blank">Share on LinkedIn</a>
+      <a class="btn btn-g" href="https://github.com/samcolibri/ai-demand-pulse" target="_blank">⭐ Star repo</a>
+    </div>
+  </div>
+</div>`;
+
+  // Populate selects
+  const indsAll=[...new Set(repos.map(r=>r.industry))].sort();
+  const fnsAll=[...new Set(repos.map(r=>r.business_function))].sort();
+  const toolsAll=[...new Set(repos.map(r=>r.ai_tool))].sort();
+  document.getElementById('fi').innerHTML='<option value="">All Industries</option>'+indsAll.map(x=>`<option>${esc(x)}</option>`).join('');
+  document.getElementById('ff').innerHTML='<option value="">All Functions</option>'+fnsAll.map(x=>`<option>${esc(x)}</option>`).join('');
+  document.getElementById('ft').innerHTML='<option value="">All Tools</option>'+toolsAll.map(x=>`<option>${esc(x)}</option>`).join('');
+
   renderTable();
+  setupHeatmapTooltip();
+}
+
+function setupHeatmapTooltip(){
+  const tt=document.getElementById('tooltip');
+  document.querySelectorAll('.hm-cell:not(.empty)').forEach(cell=>{
+    cell.addEventListener('mouseenter',e=>{
+      let d;try{d=JSON.parse(cell.dataset.tt);}catch{return;}
+      let html=`<div class="tt-title">${esc(d.fn)}<br><span style="color:var(--muted);font-weight:400">${esc(d.ind)}</span></div>`;
+      html+=`<div class="tt-count">${d.n} repos in this cell</div>`;
+      (d.repos||[]).forEach(r=>{
+        html+=`<div class="tt-repo"><a href="${esc(r.u)}" target="_blank">${esc(r.n)}</a><span class="tt-stars">⭐${fmt(r.s)}</span></div>`;
+      });
+      tt.innerHTML=html;
+      tt.style.display='block';
+    });
+    cell.addEventListener('mousemove',e=>{
+      const x=e.clientX+12, y=e.clientY-10;
+      tt.style.left=(x+320>window.innerWidth?e.clientX-330:x)+'px';
+      tt.style.top=(y+200>window.innerHeight?e.clientY-210:y)+'px';
+    });
+    cell.addEventListener('mouseleave',()=>{tt.style.display='none';});
+  });
 }
 
 function renderTable(){
-  const start=(page-1)*PAGE_SIZE, end=start+PAGE_SIZE;
-  const pageRepos=filteredRepos.slice(start,end);
-  document.getElementById('tbl-info').textContent = `Showing ${start+1}–${Math.min(end,filteredRepos.length)} of ${filteredRepos.length}`;
-  
-  const toolBadgeClass = t=>({claude:'b-red',openai:'b-green',gemini:'b-blue','open-source':'b-purple',codex:'b-amber',other:'b-gray'}[t]||'b-gray');
-
-  document.getElementById('repo-body').innerHTML = pageRepos.map(r=>{
-    const url = r.html_url||r.url||'#';
-    const full = r.full_name||r.name||url.replace('https://github.com/','');
-    const desc = (r.description||'').slice(0,80)+(r.description?.length>80?'…':'');
-    const lang = r.language||'';
-    const stars = r.stars||0;
-    const updated = (r.pushed_at||'').slice(0,10);
-    return `<tr>
-      <td><a href="${esc(url)}" target="_blank">${esc(full)}</a></td>
-      <td style="color:var(--muted)">${esc(desc)}</td>
-      <td><span class="badge b-blue">${esc(r.business_function||'')}</span></td>
-      <td><span class="badge b-green">${esc(r.industry||'')}</span></td>
-      <td><span class="badge ${toolBadgeClass(r.ai_tool)}">${esc(r.ai_tool||'')}</span></td>
-      <td style="color:var(--muted)">${esc(lang)}</td>
-      <td class="stars">${stars>0?'⭐ '+numFmt(stars):''}</td>
-      <td style="color:var(--muted)">${esc(updated)}</td>
+  const s=(page-1)*PAGE, e=s+PAGE, pg=filteredRepos.slice(s,e);
+  document.getElementById('tbl-i').textContent=`Showing ${s+1}–${Math.min(e,filteredRepos.length)} of ${filteredRepos.length}`;
+  const tcls={Claude:'br','OpenAI/GPT':'bg',Gemini:'bi','Open-source LLM':'bp',HuggingFace:'ba','Multi-model':'bi'};
+  document.getElementById('tbody').innerHTML=pg.map(r=>{
+    const url=r.html_url||'#';
+    const name=r.full_name||url.replace('https://github.com/','');
+    return`<tr>
+      <td><a href="${esc(url)}" target="_blank">${esc(name)}</a></td>
+      <td style="color:var(--muted);font-size:.72rem;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc((r.description||'').slice(0,90))}</td>
+      <td><span class="badge bi">${esc(r.business_function||'')}</span></td>
+      <td><span class="badge bg">${esc(r.industry||'')}</span></td>
+      <td><span class="badge ${tcls[r.ai_tool]||'bi'}">${esc(r.ai_tool||'')}</span></td>
+      <td style="color:var(--muted)">${esc(r.language||'')}</td>
+      <td style="color:var(--warm);font-weight:600">${r.stars?'⭐ '+fmt(r.stars):''}</td>
+      <td style="color:var(--muted)">${(r.pushed_at||'').slice(0,10)}</td>
     </tr>`;
   }).join('');
-
-  // Pagination
-  const totalPages=Math.ceil(filteredRepos.length/PAGE_SIZE);
-  let pgHTML='';
-  if(totalPages>1){
-    pgHTML+=`<button onclick="goPage(${page-1})" ${page===1?'disabled':''}>← Prev</button>`;
-    const start=Math.max(1,page-2), end=Math.min(totalPages,page+2);
-    if(start>1) pgHTML+=`<button onclick="goPage(1)">1</button>${start>2?'<span class="pg-info">…</span>':''}`;
-    for(let i=start;i<=end;i++) pgHTML+=`<button onclick="goPage(${i})" class="${i===page?'active':''}">${i}</button>`;
-    if(end<totalPages) pgHTML+=`${end<totalPages-1?'<span class="pg-info">…</span>':''}<button onclick="goPage(${totalPages})">${totalPages}</button>`;
-    pgHTML+=`<button onclick="goPage(${page+1})" ${page===totalPages?'disabled':''}>Next →</button>`;
-    pgHTML+=`<span class="pg-info">Page ${page} of ${totalPages}</span>`;
-  }
-  document.getElementById('pg').innerHTML=pgHTML;
+  const totalPg=Math.ceil(filteredRepos.length/PAGE);
+  let ph=`<button onclick="goP(${page-1})" ${page===1?'disabled':''}>← Prev</button>`;
+  const ps=Math.max(1,page-2),pe=Math.min(totalPg,page+2);
+  if(ps>1) ph+=`<button onclick="goP(1)">1</button>${ps>2?'<span class="pg-info">…</span>':''}`;
+  for(let i=ps;i<=pe;i++) ph+=`<button onclick="goP(${i})" class="${i===page?'on':''}">${i}</button>`;
+  if(pe<totalPg) ph+=`${pe<totalPg-1?'<span class="pg-info">…</span>':''}<button onclick="goP(${totalPg})">${totalPg}</button>`;
+  ph+=`<button onclick="goP(${page+1})" ${page===totalPg?'disabled':''}>Next →</button>`;
+  ph+=`<span class="pg-info">Page ${page}/${totalPg}</span>`;
+  document.getElementById('pager').innerHTML=ph;
 }
 
-function filterRepos(){
-  const q=(document.getElementById('search').value||'').toLowerCase();
-  const fi=document.getElementById('f-ind').value;
-  const fb=document.getElementById('f-biz').value;
-  const ft=document.getElementById('f-tool').value;
+function filterTable(){
+  const q=(document.getElementById('srch').value||'').toLowerCase();
+  const fi=document.getElementById('fi').value;
+  const ff=document.getElementById('ff').value;
+  const ft=document.getElementById('ft').value;
   filteredRepos=allRepos.filter(r=>{
-    if(fi && r.industry!==fi) return false;
-    if(fb && r.business_function!==fb) return false;
-    if(ft && r.ai_tool!==ft) return false;
-    if(q){
-      const haystack=(r.full_name+' '+r.description+' '+r.industry+' '+r.business_function).toLowerCase();
-      if(!haystack.includes(q)) return false;
-    }
+    if(fi&&r.industry!==fi)return false;
+    if(ff&&r.business_function!==ff)return false;
+    if(ft&&r.ai_tool!==ft)return false;
+    if(q){const h=(r.full_name+' '+r.description+' '+r.industry+' '+r.business_function).toLowerCase();if(!h.includes(q))return false;}
     return true;
   });
-  page=1;
-  renderTable();
+  page=1; renderTable();
 }
 
-function sortRepos(key){
-  if(sortKey===key){sortAsc=!sortAsc;}else{sortKey=key;sortAsc=false;}
-  document.querySelectorAll('.repos thead th').forEach(th=>th.classList.remove('sorted'));
+function filterByIndustry(ind){
+  document.getElementById('fi').value=ind;
+  filterTable();
+  document.getElementById('tbl-sec').scrollIntoView({behavior:'smooth'});
+}
+
+function sortTable(k){
+  if(sortKey===k)sortAsc=!sortAsc;else{sortKey=k;sortAsc=false;}
   filteredRepos.sort((a,b)=>{
-    let av=a[key]||'', bv=b[key]||'';
-    if(key==='stars'){av=+(a.stars||0);bv=+(b.stars||0);}
+    let av=a[k]||'',bv=b[k]||'';
+    if(k==='stars'){av=+(a.stars||0);bv=+(b.stars||0);}
     return sortAsc?(av<bv?-1:av>bv?1:0):(av>bv?-1:av<bv?1:0);
   });
-  page=1;
-  renderTable();
+  page=1; renderTable();
 }
 
-function goPage(p){
-  const total=Math.ceil(filteredRepos.length/PAGE_SIZE);
-  if(p<1||p>total) return;
-  page=p;
-  renderTable();
-  document.getElementById('repo-sec').scrollIntoView({behavior:'smooth',block:'start'});
-}
+function goP(p){const t=Math.ceil(filteredRepos.length/PAGE);if(p<1||p>t)return;page=p;renderTable();document.getElementById('tbl-sec').scrollIntoView({behavior:'smooth',block:'start'});}
 
-// ── load data ──────────────────────────────────────────────────────────────
 async function init(){
   try{
-    const [r1,r2]=await Promise.all([
-      fetch('./data/demand_analysis.json'),
-      fetch('./data/repos_classified.json')
-    ]);
-    if(!r1.ok||!r2.ok) throw new Error('data not ready');
-    const [analysis,classified]=await Promise.all([r1.json(),r2.json()]);
-    render(analysis,classified);
+    const[r1,r2]=await Promise.all([fetch('./data/demand_analysis.json'),fetch('./data/repos_classified.json')]);
+    if(!r1.ok||!r2.ok)throw new Error('data not ready');
+    const[analysis,repos]=await Promise.all([r1.json(),r2.json()]);
+    render(analysis,repos);
   }catch(e){
-    document.getElementById('app').innerHTML=`
-      <div class="loading">
-        <div class="spin"></div>
-        <p>FORGE agents are running the first analysis...</p>
-        <p style="margin-top:8px;font-size:.82rem;color:var(--muted)">Data populates after the first GitHub Actions run.</p>
-        <p style="margin-top:16px"><a href="https://github.com/samcolibri/ai-demand-pulse/actions">Watch the live run →</a></p>
-      </div>`;
+    document.getElementById('app').innerHTML=`<div class="loading"><div class="spin"></div>
+      <p>Agents running first analysis...</p>
+      <p style="margin-top:8px;font-size:.82rem;color:var(--muted)">Check <a href="https://github.com/samcolibri/ai-demand-pulse/actions">GitHub Actions</a></p></div>`;
   }
 }
 init();
